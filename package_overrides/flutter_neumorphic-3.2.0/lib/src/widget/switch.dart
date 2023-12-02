@@ -1,4 +1,4 @@
-// ignore_for_file: library_prefixes
+// ignore_for_file: library_prefixes, constant_identifier_names
 
 import 'package:flutter_neumorphic/src/widget/animation/animated_scale.dart'
     as animationScale;
@@ -196,8 +196,9 @@ class NeumorphicSwitch extends StatelessWidget {
   double get _thumbDepth {
     if (!isEnabled) {
       return 0;
-    } else
+    } else {
       return style.thumbDepth ?? neumorphicDefaultTheme.depth;
+    }
   }
 
   NeumorphicShape get _getThumbShape {

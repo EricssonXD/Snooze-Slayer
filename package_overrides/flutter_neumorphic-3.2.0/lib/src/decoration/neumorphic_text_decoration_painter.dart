@@ -1,6 +1,5 @@
 import 'dart:ui' as ui;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
@@ -25,7 +24,7 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
   final TextStyle textStyle;
   final TextAlign textAlign;
 
-  NeumorphicPainterCache _cache;
+  final NeumorphicPainterCache _cache;
 
   late Paint _backgroundPaint;
   late Paint _whiteShadowPaint;
@@ -56,7 +55,7 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
       ..strokeJoin = StrokeJoin.bevel
       ..style = PaintingStyle.stroke
       ..strokeWidth = style.border.width ?? 0.0
-      ..color = style.border.color ?? Color(0xFFFFFFFF);
+      ..color = style.border.color ?? const Color(0xFFFFFFFF);
   }
 
   final bool drawGradient;
@@ -93,7 +92,7 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
     if (style.color != null) {
       invalidateColor = _cache.updateStyleColor(style.color!);
       if (invalidateColor) {
-        _backgroundPaint..color = _cache.backgroundColor;
+        _backgroundPaint.color = _cache.backgroundColor;
       }
     }
 
@@ -101,8 +100,8 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
     if (style.depth != null) {
       invalidateDepth = _cache.updateStyleDepth(style.depth!, 3);
       if (invalidateDepth) {
-        _blackShadowPaint..maskFilter = _cache.maskFilterBlur;
-        _whiteShadowPaint..maskFilter = _cache.maskFilterBlur;
+        _blackShadowPaint.maskFilter = _cache.maskFilterBlur;
+        _whiteShadowPaint.maskFilter = _cache.maskFilterBlur;
       }
     }
 
@@ -117,10 +116,10 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
       );
       if (invalidateShadowColors) {
         if (_cache.shadowLightColor != null) {
-          _whiteShadowPaint..color = _cache.shadowLightColor!;
+          _whiteShadowPaint.color = _cache.shadowLightColor!;
         }
         if (_cache.shadowDarkColor != null) {
-          _blackShadowPaint..color = _cache.shadowDarkColor!;
+          _blackShadowPaint.color = _cache.shadowDarkColor!;
         }
       }
     }

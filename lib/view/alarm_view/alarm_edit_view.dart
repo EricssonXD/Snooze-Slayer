@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class AlarmEditView extends StatefulWidget {
   const AlarmEditView({super.key});
@@ -13,7 +12,9 @@ class _AlarmEditViewState extends State<AlarmEditView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: const Column(
-        children: [Text("YO"), NeumorphicAppBar()],
+        children: [
+          Text("YO"),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
           child: Row(

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/widgets.dart';
 
 import 'container.dart';
@@ -100,10 +98,11 @@ class NeumorphicProgress extends StatefulWidget {
       this.duration = const Duration(milliseconds: 300),
       this.style = const ProgressStyle(),
       this.curve = Curves.easeOutCubic})
-      : this._percent = percent,
+      : _percent = percent,
         super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _NeumorphicProgressState createState() => _NeumorphicProgressState();
 
   double? get percent => _percent?.clamp(0, 1);
@@ -280,6 +279,7 @@ class _NeumorphicProgressIndeterminateState
       await _controller
           .repeat(min: 0, max: 1, reverse: widget.reverse)
           .orCancel;
+      // ignore: empty_catches
     } on TickerCanceled {}
   }
 
@@ -350,9 +350,8 @@ class _GradientProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: this.borderRadius,
-        gradient: LinearGradient(
-            begin: this.begin, end: this.end, colors: this.colors),
+        borderRadius: borderRadius,
+        gradient: LinearGradient(begin: begin, end: end, colors: colors),
       ),
     );
   }

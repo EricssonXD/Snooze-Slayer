@@ -118,9 +118,11 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class NeumorphicAppBarTheme extends InheritedWidget {
   @override
+  // ignore: overridden_fields
   final Widget child;
 
-  const NeumorphicAppBarTheme({required this.child}) : super(child: child);
+  const NeumorphicAppBarTheme({Key? key, required this.child})
+      : super(key: key, child: child);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
@@ -151,9 +153,9 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
         leading = NeumorphicButton(
           padding: widget.buttonPadding,
           style: widget.buttonStyle,
-          child: nTheme?.current?.appBarTheme.icons.menuIcon,
           onPressed: _handleDrawerButton,
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          child: nTheme?.current?.appBarTheme.icons.menuIcon,
         );
       } else {
         if (canPop) {
@@ -212,9 +214,9 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
         child: NeumorphicButton(
           padding: widget.buttonPadding,
           style: widget.buttonStyle,
-          child: nTheme?.current?.appBarTheme.icons.menuIcon,
           onPressed: _handleDrawerButtonEnd,
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          child: nTheme?.current?.appBarTheme.icons.menuIcon,
         ),
       );
     }

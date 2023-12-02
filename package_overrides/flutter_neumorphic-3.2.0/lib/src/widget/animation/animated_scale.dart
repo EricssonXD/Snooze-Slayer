@@ -27,13 +27,15 @@ class AnimatedScale extends StatefulWidget {
   final Alignment alignment;
 
   const AnimatedScale({
+    Key? key,
     this.child,
     this.scale = 1,
     this.duration = const Duration(milliseconds: 150),
     this.alignment = Alignment.center,
-  });
+  }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _AnimatedScaleState createState() => _AnimatedScaleState();
 }
 

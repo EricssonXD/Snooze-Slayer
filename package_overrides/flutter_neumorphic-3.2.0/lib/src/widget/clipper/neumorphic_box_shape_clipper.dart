@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this
+
 import 'package:flutter/widgets.dart';
 
 import '../../neumorphic_box_shape.dart';
@@ -6,7 +8,8 @@ class NeumorphicBoxShapeClipper extends StatelessWidget {
   final NeumorphicBoxShape shape;
   final Widget? child;
 
-  NeumorphicBoxShapeClipper({required this.shape, this.child});
+  const NeumorphicBoxShapeClipper({Key? key, required this.shape, this.child})
+      : super(key: key);
 
   CustomClipper<Path>? _getClipper(NeumorphicBoxShape shape) {
     return shape.customShapePathProvider;

@@ -23,6 +23,7 @@ class NeumorphicEmbossPainterCache
     );
   }
 
+  @override
   Rect updateLayerRect({required Offset newOffset, required Size newSize}) {
     return newOffset & newSize;
   }
