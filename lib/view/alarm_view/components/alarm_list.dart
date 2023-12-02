@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../view_model/bloc/alarm_bloc/alarm_cubit.dart';
 import '../../../view_model/bloc/alarm_bloc/alarm_states.dart';
 import '../../../view_model/database_helper/database_helper.dart';
+import '../alarm_edit_view.dart';
 
 class AlarmList extends StatefulWidget {
   const AlarmList({super.key});
@@ -31,13 +32,16 @@ class _AlarmListState extends State<AlarmList> {
 
                     return InkWell(
                       onTap: () {
-                        DeleteWarningDialog(() {
-                          DbHelper().delete(
-                            alarm.key!,
-                          );
-                          BlocProvider.of<AlarmCubit>(context).getData();
-                          Navigator.of(context).pop();
-                        }, context);
+                        // DeleteWarningDialog(() {
+                        //   DbHelper().delete(
+                        //     alarm.key!,
+                        //   );
+                        //   BlocProvider.of<AlarmCubit>(context).getData();
+                        //   Navigator.of(context).pop();
+                        // }, context);
+                        Navigator.of(context, rootNavigator: true).push(
+                            MaterialPageRoute(
+                                builder: (context) => const AlarmEditView()));
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
