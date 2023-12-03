@@ -7,7 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../model/alarm_model.dart';
 
 class AlarmCubit extends Cubit<AlarmStates> {
-  AlarmCubit() : super(NoData());
+  AlarmCubit() : super(NoData()) {
+    Stream<void>? userChanged = DbHelper().userChanged;
+    userChanged?.listen((_) {
+      emit(HasData());
+      // print("YOOOOOO");
+    });
+  }
+
   final DbHelper helper = DbHelper();
   late Future<List<AlarmModel>> list;
 

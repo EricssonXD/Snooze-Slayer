@@ -32,16 +32,17 @@ class _AlarmListState extends State<AlarmList> {
 
                     return InkWell(
                       onTap: () {
-                        // DeleteWarningDialog(() {
-                        //   DbHelper().delete(
-                        //     alarm.key!,
-                        //   );
-                        //   BlocProvider.of<AlarmCubit>(context).getData();
-                        //   Navigator.of(context).pop();
-                        // }, context);
                         Navigator.of(context, rootNavigator: true).push(
                             MaterialPageRoute(
-                                builder: (context) => const AlarmEditView()));
+                                builder: (context) =>
+                                    AlarmEditView(alarm: alarm)));
+                      },
+                      onLongPress: () {
+                        DeleteWarningDialog(() {
+                          DbHelper().delete(alarm);
+                          BlocProvider.of<AlarmCubit>(context).getData();
+                          Navigator.of(context).pop();
+                        }, context);
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
@@ -82,7 +83,7 @@ class _AlarmListState extends State<AlarmList> {
                                           color: Colors.black54),
                                 ),
                                 Text(
-                                  '${alarm.day}',
+                                  alarm.day,
                                   style: Theme.of(context)
                                       .textTheme
                                       .headlineSmall!
@@ -103,7 +104,7 @@ class _AlarmListState extends State<AlarmList> {
                               trackOutlineColor: const MaterialStatePropertyAll(
                                 Colors.transparent,
                               ),
-                              value: alarm.isEnabled ?? false,
+                              value: alarm.isEnabled,
                               onChanged: (value) {
                                 alarm.isEnabled = value;
                                 BlocProvider.of<AlarmCubit>(context)

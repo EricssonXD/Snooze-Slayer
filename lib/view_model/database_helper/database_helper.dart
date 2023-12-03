@@ -1,54 +1,47 @@
 import 'package:clock_analog/model/alarm_model.dart';
-import 'package:flutter/foundation.dart';
+import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 
 class DbHelper {
-  Database? _db;
-  Future<Database?> get db async {
-    if (_db != null) {
-      return _db;
+  Isar? _isar;
+  Stream<void>? userChanged;
+
+  Future<Isar> get isar async {
+    if (_isar != null) {
+      return _isar!;
     }
-    var directory = await getExternalStorageDirectory();
-    String path = join(directory!.path, 'db');
-    var db = await openDatabase(
-      path,
-      version: 1,
-      onCreate: (db, version) {
-        db.execute(
-            "CREATE TABLE alarm(key TEXT PRIMARY KEY,hour TEXT,min TEXT,title TEXT,period TEXT,day TEXT,isEnabled TEXT,alarmId TEXT)");
-      },
-    );
-    return db;
+    final dir = await getApplicationDocumentsDirectory();
+    _isar = Isar.getInstance() ??
+        await Isar.open(
+          [AlarmModelSchema],
+          directory: dir.path,
+        );
+    userChanged = _isar!.alarmModels.watchLazy();
+    return _isar!;
   }
 
   Future<AlarmModel> insert(AlarmModel model) async {
-    var dbclient = await db;
-    dbclient!
-        .insert('alarm', model.toMap(),
-            conflictAlgorithm: ConflictAlgorithm.replace)
-        .then(
-      (value) {
-        // print('inserted');
-      },
-    ).onError(
-      (error, stackTrace) {
-        debugPrint(error.toString());
-      },
-    );
+    var dbclient = await isar;
+
+    await dbclient.writeTxn(() async {
+      await dbclient.alarmModels.put(model);
+    });
+
     return model;
   }
 
-  Future<int> delete(String id) async {
-    var dbClient = await db;
-    return await dbClient!.delete('alarm', where: 'key = ?', whereArgs: [id]);
+  Future<bool> delete(AlarmModel model) async {
+    var isarClient = await isar;
+    // final existingUser = await isarClient.alarmModels.get(newUser.id); // get
+    late final bool result;
+    await isarClient.writeTxn(() async {
+      result = await isarClient.alarmModels.delete(model.id); // delete
+    });
+    return result;
   }
 
   Future<List<AlarmModel>> getData() async {
-    var dbClient = await db;
-    final List<Map<String, Object?>> queryResult =
-        await dbClient!.query('alarm');
-    return queryResult.map((e) => AlarmModel.fromMap(e)).toList();
+    var dbClient = await isar;
+    return dbClient.alarmModels.where().findAll();
   }
 }
