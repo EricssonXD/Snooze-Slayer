@@ -76,7 +76,12 @@ class AlarmService : Service() {
         val notificationHandler = NotificationHandler(this)
 
         val intent = applicationContext.packageManager.getLaunchIntentForPackage(applicationContext.packageName)
-        val pendingIntent = PendingIntent.getActivity(this, id!!, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        lateinit var pendingIntent: PendingIntent
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            pendingIntent = PendingIntent.getActivity(this, id!!, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        } else {
+            pendingIntent = PendingIntent.getActivity(this, id!!, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
 
         val notification = notificationHandler.buildNotification(notificationTitle!!, notificationBody!!, fullScreenIntent!!, pendingIntent)
         startForeground(id, notification)

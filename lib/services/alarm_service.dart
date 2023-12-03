@@ -45,7 +45,6 @@ class MyAlarm {
     Alarm.set(alarmSettings: alarmSettings).then((value) {
       BlocProvider.of<AlarmCubit>(context).helper.insert(
             AlarmModel(
-              // key: DateTime.now().microsecondsSinceEpoch.toString(),
               hour: time.hourOfPeriod,
               period: time.period.name,
               min: time.minute,

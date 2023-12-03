@@ -61,8 +61,12 @@ class AlarmPlugin: FlutterPlugin, MethodCallHandler {
 
                 // Intent to cancel the future alarm if it's set
                 val alarmIntent = Intent(context, AlarmReceiver::class.java)
-                val pendingIntent = PendingIntent.getBroadcast(context, id!!, alarmIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-
+                lateinit var pendingIntent: PendingIntent;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                    pendingIntent = PendingIntent.getBroadcast(context, id!!, alarmIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT);
+                } else {
+                    pendingIntent = PendingIntent.getBroadcast(context, id!!, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                }
                 // Cancel the future alarm using AlarmManager
                 val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
                 alarmManager.cancel(pendingIntent)
@@ -125,7 +129,12 @@ class AlarmPlugin: FlutterPlugin, MethodCallHandler {
 
     fun handleDelayedAlarm(context: Context, intent: Intent, delayInSeconds: Int, id: Int) {
         val triggerTime = System.currentTimeMillis() + delayInSeconds * 1000
-        val pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        lateinit var pendingIntent: PendingIntent;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        } else {
+            pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)

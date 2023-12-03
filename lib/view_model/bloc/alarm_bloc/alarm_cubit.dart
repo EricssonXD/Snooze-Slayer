@@ -10,8 +10,8 @@ class AlarmCubit extends Cubit<AlarmStates> {
   AlarmCubit() : super(NoData()) {
     Stream<void>? userChanged = DbHelper().userChanged;
     userChanged?.listen((_) {
+      print("Listened GHot stuff");
       emit(HasData());
-      // print("YOOOOOO");
     });
   }
 

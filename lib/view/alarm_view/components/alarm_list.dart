@@ -106,6 +106,7 @@ class _AlarmListState extends State<AlarmList> {
                               ),
                               value: alarm.isEnabled,
                               onChanged: (value) {
+                                print(alarm.id);
                                 alarm.isEnabled = value;
                                 BlocProvider.of<AlarmCubit>(context)
                                     .helper
