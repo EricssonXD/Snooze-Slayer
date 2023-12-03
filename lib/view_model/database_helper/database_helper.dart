@@ -4,7 +4,6 @@ import 'package:path_provider/path_provider.dart';
 
 class DbHelper {
   Isar? _isar;
-  Stream<void>? userChanged;
 
   Future<Isar> get isar async {
     if (_isar != null) {
@@ -16,12 +15,11 @@ class DbHelper {
           [AlarmModelSchema],
           directory: dir.path,
         );
-    userChanged = _isar!.alarmModels.watchLazy();
     return _isar!;
   }
 
   Future<AlarmModel> insert(AlarmModel model) async {
-    var dbclient = await isar;
+    Isar dbclient = await isar;
 
     await dbclient.writeTxn(() async {
       await dbclient.alarmModels.put(model);
@@ -31,7 +29,7 @@ class DbHelper {
   }
 
   Future<bool> delete(AlarmModel model) async {
-    var isarClient = await isar;
+    Isar isarClient = await isar;
     // final existingUser = await isarClient.alarmModels.get(newUser.id); // get
     late final bool result;
     await isarClient.writeTxn(() async {
@@ -41,7 +39,7 @@ class DbHelper {
   }
 
   Future<List<AlarmModel>> getData() async {
-    var dbClient = await isar;
-    return dbClient.alarmModels.where().findAll();
+    Isar dbClient = await isar;
+    return await dbClient.alarmModels.where().findAll();
   }
 }

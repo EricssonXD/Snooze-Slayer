@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:clock_analog/services/alarm_service.dart';
 import 'package:clock_analog/view_model/bloc/alarm_bloc/alarm_states.dart';
 import 'package:clock_analog/view_model/database_helper/database_helper.dart';
@@ -8,21 +10,42 @@ import '../../../model/alarm_model.dart';
 
 class AlarmCubit extends Cubit<AlarmStates> {
   AlarmCubit() : super(NoData()) {
-    Stream<void>? userChanged = DbHelper().userChanged;
-    userChanged?.listen((_) {
-      print("Listened GHot stuff");
-      emit(HasData());
-    });
+    initStream();
+  }
+
+  void initStream() async {
+    // alarmModelStream =
+  }
+
+  Future<Stream<void>> get alarmModelStream async =>
+      (await helper.isar).alarmModels.watchLazy();
+
+  Future<StreamSubscription<void>> get subscribeList async {
+    return (await alarmModelStream).listen((event) => getData());
   }
 
   final DbHelper helper = DbHelper();
-  late Future<List<AlarmModel>> list;
+  List<AlarmModel> list = [];
 
   void getData() async {
     helper.getData().then((value) {
-      print(value.firstOrNull?.id);
-      list = Future.value(value);
-      emit(HasData());
+      // print(value.firstOrNull?.id);
+      list = value;
+      emit(HasData(list));
+    });
+  }
+
+  Future<AlarmModel> insert(AlarmModel alarm) async {
+    return await helper.insert(alarm).then((value) {
+      // getData();
+      return value;
+    });
+  }
+
+  Future<bool> delete(AlarmModel alarm) async {
+    return await helper.delete(alarm).then((value) {
+      // getData();
+      return delete(alarm);
     });
   }
 
