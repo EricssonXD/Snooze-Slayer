@@ -2,6 +2,7 @@ import 'package:clock_analog/model/alarm_model.dart';
 import 'package:clock_analog/view/common_widget/warning.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:isar/isar.dart';
 
 import '../../../view_model/bloc/alarm_bloc/alarm_cubit.dart';
 import '../../../view_model/bloc/alarm_bloc/alarm_states.dart';
@@ -106,7 +107,7 @@ class _AlarmListState extends State<AlarmList> {
                               ),
                               value: alarm.isEnabled,
                               onChanged: (value) {
-                                print(alarm.id);
+                                print(Isar.autoIncrement);
                                 alarm.isEnabled = value;
                                 BlocProvider.of<AlarmCubit>(context)
                                     .helper

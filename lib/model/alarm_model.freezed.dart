@@ -16,8 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AlarmModel {
-// required String key,
-  int get hour => throw _privateConstructorUsedError; // required String key,
+  int get id => throw _privateConstructorUsedError;
+  set id(int value) => throw _privateConstructorUsedError;
+  int get hour => throw _privateConstructorUsedError;
   set hour(int value) => throw _privateConstructorUsedError;
   int get min => throw _privateConstructorUsedError;
   set min(int value) => throw _privateConstructorUsedError;
@@ -44,7 +45,8 @@ abstract class $AlarmModelCopyWith<$Res> {
       _$AlarmModelCopyWithImpl<$Res, AlarmModel>;
   @useResult
   $Res call(
-      {int hour,
+      {int id,
+      int hour,
       int min,
       String period,
       String title,
@@ -66,6 +68,7 @@ class _$AlarmModelCopyWithImpl<$Res, $Val extends AlarmModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? hour = null,
     Object? min = null,
     Object? period = null,
@@ -75,6 +78,10 @@ class _$AlarmModelCopyWithImpl<$Res, $Val extends AlarmModel>
     Object? alarmId = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       hour: null == hour
           ? _value.hour
           : hour // ignore: cast_nullable_to_non_nullable
@@ -116,7 +123,8 @@ abstract class _$$AlarmModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int hour,
+      {int id,
+      int hour,
       int min,
       String period,
       String title,
@@ -136,6 +144,7 @@ class __$$AlarmModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? hour = null,
     Object? min = null,
     Object? period = null,
@@ -145,6 +154,10 @@ class __$$AlarmModelImplCopyWithImpl<$Res>
     Object? alarmId = null,
   }) {
     return _then(_$AlarmModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       hour: null == hour
           ? _value.hour
           : hour // ignore: cast_nullable_to_non_nullable
@@ -181,7 +194,8 @@ class __$$AlarmModelImplCopyWithImpl<$Res>
 
 class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
   _$AlarmModelImpl(
-      {required this.hour,
+      {this.id = Isar.autoIncrement,
+      required this.hour,
       required this.min,
       required this.period,
       required this.title,
@@ -190,7 +204,9 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
       required this.alarmId})
       : super._();
 
-// required String key,
+  @override
+  @JsonKey()
+  int id;
   @override
   int hour;
   @override
@@ -208,7 +224,7 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AlarmModel(hour: $hour, min: $min, period: $period, title: $title, day: $day, isEnabled: $isEnabled, alarmId: $alarmId)';
+    return 'AlarmModel(id: $id, hour: $hour, min: $min, period: $period, title: $title, day: $day, isEnabled: $isEnabled, alarmId: $alarmId)';
   }
 
   @override
@@ -216,6 +232,7 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'AlarmModel'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('hour', hour))
       ..add(DiagnosticsProperty('min', min))
       ..add(DiagnosticsProperty('period', period))
@@ -234,7 +251,8 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
 
 abstract class _AlarmModel extends AlarmModel {
   factory _AlarmModel(
-      {required int hour,
+      {int id,
+      required int hour,
       required int min,
       required String period,
       required String title,
@@ -243,8 +261,11 @@ abstract class _AlarmModel extends AlarmModel {
       required int alarmId}) = _$AlarmModelImpl;
   _AlarmModel._() : super._();
 
-  @override // required String key,
-  int get hour; // required String key,
+  @override
+  int get id;
+  set id(int value);
+  @override
+  int get hour;
   set hour(int value);
   @override
   int get min;

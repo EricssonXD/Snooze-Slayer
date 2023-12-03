@@ -4,6 +4,7 @@ import 'package:clock_analog/res/constants.dart';
 import 'package:clock_analog/view_model/bloc/alarm_bloc/alarm_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:isar/isar.dart';
 import '../model/alarm_model.dart';
 
 class MyAlarm {

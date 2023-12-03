@@ -104,6 +104,7 @@ AlarmModel _alarmModelDeserialize(
     alarmId: reader.readLong(offsets[0]),
     day: reader.readString(offsets[1]),
     hour: reader.readLong(offsets[2]),
+    id: id,
     isEnabled: reader.readBool(offsets[3]),
     min: reader.readLong(offsets[4]),
     period: reader.readString(offsets[5]),

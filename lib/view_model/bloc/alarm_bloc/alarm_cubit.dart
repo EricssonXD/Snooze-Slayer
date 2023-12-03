@@ -20,6 +20,7 @@ class AlarmCubit extends Cubit<AlarmStates> {
 
   void getData() async {
     helper.getData().then((value) {
+      print(value.firstOrNull?.id);
       list = Future.value(value);
       emit(HasData());
     });

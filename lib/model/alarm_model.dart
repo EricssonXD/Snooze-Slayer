@@ -10,7 +10,7 @@ part 'alarm_model.g.dart';
 class AlarmModel with _$AlarmModel {
   AlarmModel._();
   factory AlarmModel({
-    // required String key,
+    @Default(Isar.autoIncrement) int id,
     required int hour,
     required int min,
     required String period,
@@ -20,7 +20,9 @@ class AlarmModel with _$AlarmModel {
     required int alarmId,
   }) = _AlarmModel;
 
-  Id get id => Isar.autoIncrement;
+  @override
+  // ignore: recursive_getters
+  Id get id => id;
 
   // factory AlarmModel.fromJson(Map<String, dynamic> json) =>
   //     _$AlarmModelFromJson(json);
