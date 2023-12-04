@@ -20,8 +20,8 @@ mixin _$AlarmModel {
   set id(int value) => throw _privateConstructorUsedError;
   int get hour => throw _privateConstructorUsedError;
   set hour(int value) => throw _privateConstructorUsedError;
-  int get min => throw _privateConstructorUsedError;
-  set min(int value) =>
+  int get minute => throw _privateConstructorUsedError;
+  set minute(int value) =>
       throw _privateConstructorUsedError; // required int alarmId,
   String get title =>
       throw _privateConstructorUsedError; // required int alarmId,
@@ -62,7 +62,7 @@ abstract class $AlarmModelCopyWith<$Res> {
   $Res call(
       {int id,
       int hour,
-      int min,
+      int minute,
       String title,
       bool isEnabled,
       double volume,
@@ -91,7 +91,7 @@ class _$AlarmModelCopyWithImpl<$Res, $Val extends AlarmModel>
   $Res call({
     Object? id = null,
     Object? hour = null,
-    Object? min = null,
+    Object? minute = null,
     Object? title = null,
     Object? isEnabled = null,
     Object? volume = null,
@@ -113,9 +113,9 @@ class _$AlarmModelCopyWithImpl<$Res, $Val extends AlarmModel>
           ? _value.hour
           : hour // ignore: cast_nullable_to_non_nullable
               as int,
-      min: null == min
-          ? _value.min
-          : min // ignore: cast_nullable_to_non_nullable
+      minute: null == minute
+          ? _value.minute
+          : minute // ignore: cast_nullable_to_non_nullable
               as int,
       title: null == title
           ? _value.title
@@ -176,7 +176,7 @@ abstract class _$$AlarmModelImplCopyWith<$Res>
   $Res call(
       {int id,
       int hour,
-      int min,
+      int minute,
       String title,
       bool isEnabled,
       double volume,
@@ -203,7 +203,7 @@ class __$$AlarmModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? hour = null,
-    Object? min = null,
+    Object? minute = null,
     Object? title = null,
     Object? isEnabled = null,
     Object? volume = null,
@@ -225,9 +225,9 @@ class __$$AlarmModelImplCopyWithImpl<$Res>
           ? _value.hour
           : hour // ignore: cast_nullable_to_non_nullable
               as int,
-      min: null == min
-          ? _value.min
-          : min // ignore: cast_nullable_to_non_nullable
+      minute: null == minute
+          ? _value.minute
+          : minute // ignore: cast_nullable_to_non_nullable
               as int,
       title: null == title
           ? _value.title
@@ -283,7 +283,7 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
   _$AlarmModelImpl(
       {this.id = Isar.autoIncrement,
       required this.hour,
-      required this.min,
+      required this.minute,
       this.title = 'Alarm',
       this.isEnabled = true,
       this.volume = 1,
@@ -303,7 +303,7 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
   @override
   int hour;
   @override
-  int min;
+  int minute;
 // required int alarmId,
   @override
   @JsonKey()
@@ -341,7 +341,7 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AlarmModel(id: $id, hour: $hour, min: $min, title: $title, isEnabled: $isEnabled, volume: $volume, vibrate: $vibrate, loopAudio: $loopAudio, assetAudioPath: $assetAudioPath, fadeDuration: $fadeDuration, notificationTitle: $notificationTitle, notificationBody: $notificationBody, enableNotificationOnKill: $enableNotificationOnKill, androidFullScreenIntent: $androidFullScreenIntent)';
+    return 'AlarmModel(id: $id, hour: $hour, minute: $minute, title: $title, isEnabled: $isEnabled, volume: $volume, vibrate: $vibrate, loopAudio: $loopAudio, assetAudioPath: $assetAudioPath, fadeDuration: $fadeDuration, notificationTitle: $notificationTitle, notificationBody: $notificationBody, enableNotificationOnKill: $enableNotificationOnKill, androidFullScreenIntent: $androidFullScreenIntent)';
   }
 
   @override
@@ -351,7 +351,7 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('type', 'AlarmModel'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('hour', hour))
-      ..add(DiagnosticsProperty('min', min))
+      ..add(DiagnosticsProperty('minute', minute))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('isEnabled', isEnabled))
       ..add(DiagnosticsProperty('volume', volume))
@@ -378,7 +378,7 @@ abstract class _AlarmModel extends AlarmModel {
   factory _AlarmModel(
       {int id,
       required int hour,
-      required int min,
+      required int minute,
       String title,
       bool isEnabled,
       double volume,
@@ -399,8 +399,8 @@ abstract class _AlarmModel extends AlarmModel {
   int get hour;
   set hour(int value);
   @override
-  int get min;
-  set min(int value);
+  int get minute;
+  set minute(int value);
   @override // required int alarmId,
   String get title; // required int alarmId,
   set title(String value);

@@ -74,3 +74,5 @@ If you have any questions or suggestions , feel free to contact us at rh676838@g
 PlatformException (PlatformException(error, com.example.clock_analog: Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
 
 - Fix: add "PendingIntent.FLAG_IMMUTABLE or" to all PendingIntent
+
+Sometimes crashes when stopping all clocks

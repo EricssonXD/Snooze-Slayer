@@ -6,6 +6,7 @@ import 'package:clock_analog/view_model/bloc/home_bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,9 +18,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Timer(const Duration(milliseconds: 0), () {
+    Future.delayed(const Duration(milliseconds: 300), () {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -27,8 +27,19 @@ class _SplashScreenState extends State<SplashScreen> {
               create: (context) => HomeBloc(),
               child: const HomeScreen(),
             ),
-          ));
+          )).then((value) {
+        askPermissions();
+      });
     });
+  }
+
+  void askPermissions() async {
+    switch (await Permission.notification.status) {
+      case PermissionStatus.granted:
+        break;
+      default:
+        Permission.notification.request();
+    }
   }
 
   @override

@@ -28,7 +28,6 @@ class AlarmCubit extends Cubit<AlarmStates> {
 
   void getData() async {
     helper.getData().then((value) {
-      // print(value.firstOrNull?.id);
       list = value;
       emit(HasData(list));
     });
@@ -43,7 +42,6 @@ class AlarmCubit extends Cubit<AlarmStates> {
 
   Future<bool> delete(AlarmModel alarm) async {
     return await helper.delete(alarm).then((value) {
-      // getData();
       return value;
     });
   }

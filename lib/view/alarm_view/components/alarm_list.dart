@@ -66,7 +66,8 @@ class _AlarmListState extends State<AlarmList> {
                       RichText(
                           text: TextSpan(children: [
                         TextSpan(
-                            text: '${alarm.hour}:${alarm.min}',
+                            text:
+                                '${alarm.hour < 10 ? "0${alarm.hour}" : alarm.hour}:${alarm.minute < 10 ? "0${alarm.minute}" : alarm.minute}',
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineLarge!

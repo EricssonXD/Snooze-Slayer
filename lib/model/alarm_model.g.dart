@@ -52,9 +52,9 @@ const AlarmModelSchema = CollectionSchema(
       name: r'loopAudio',
       type: IsarType.bool,
     ),
-    r'min': PropertySchema(
+    r'minute': PropertySchema(
       id: 7,
-      name: r'min',
+      name: r'minute',
       type: IsarType.long,
     ),
     r'notificationBody': PropertySchema(
@@ -123,7 +123,7 @@ void _alarmModelSerialize(
   writer.writeLong(offsets[4], object.hour);
   writer.writeBool(offsets[5], object.isEnabled);
   writer.writeBool(offsets[6], object.loopAudio);
-  writer.writeLong(offsets[7], object.min);
+  writer.writeLong(offsets[7], object.minute);
   writer.writeString(offsets[8], object.notificationBody);
   writer.writeString(offsets[9], object.notificationTitle);
   writer.writeString(offsets[10], object.title);
@@ -146,7 +146,7 @@ AlarmModel _alarmModelDeserialize(
     id: id,
     isEnabled: reader.readBool(offsets[5]),
     loopAudio: reader.readBool(offsets[6]),
-    min: reader.readLong(offsets[7]),
+    minute: reader.readLong(offsets[7]),
     notificationBody: reader.readString(offsets[8]),
     notificationTitle: reader.readString(offsets[9]),
     title: reader.readString(offsets[10]),
@@ -631,43 +631,43 @@ extension AlarmModelQueryFilter
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> minEqualTo(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> minuteEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'min',
+        property: r'minute',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> minGreaterThan(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> minuteGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'min',
+        property: r'minute',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> minLessThan(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> minuteLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'min',
+        property: r'minute',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> minBetween(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> minuteBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -675,7 +675,7 @@ extension AlarmModelQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'min',
+        property: r'minute',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -1257,15 +1257,15 @@ extension AlarmModelQuerySortBy
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByMin() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByMinute() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'min', Sort.asc);
+      return query.addSortBy(r'minute', Sort.asc);
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByMinDesc() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByMinuteDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'min', Sort.desc);
+      return query.addSortBy(r'minute', Sort.desc);
     });
   }
 
@@ -1435,15 +1435,15 @@ extension AlarmModelQuerySortThenBy
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByMin() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByMinute() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'min', Sort.asc);
+      return query.addSortBy(r'minute', Sort.asc);
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByMinDesc() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByMinuteDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'min', Sort.desc);
+      return query.addSortBy(r'minute', Sort.desc);
     });
   }
 
@@ -1558,9 +1558,9 @@ extension AlarmModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByMin() {
+  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByMinute() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'min');
+      return query.addDistinctBy(r'minute');
     });
   }
 
@@ -1652,9 +1652,9 @@ extension AlarmModelQueryProperty
     });
   }
 
-  QueryBuilder<AlarmModel, int, QQueryOperations> minProperty() {
+  QueryBuilder<AlarmModel, int, QQueryOperations> minuteProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'min');
+      return query.addPropertyName(r'minute');
     });
   }
 

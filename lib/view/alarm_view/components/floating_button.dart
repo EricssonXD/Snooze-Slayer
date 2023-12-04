@@ -1,7 +1,6 @@
+import 'package:clock_analog/view/alarm_view/alarm_edit_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../view_model/bloc/alarm_bloc/alarm_cubit.dart';
 import '../../common_widget/soft_button.dart';
 
 class FloatingButton extends StatelessWidget {
@@ -11,7 +10,8 @@ class FloatingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        BlocProvider.of<AlarmCubit>(context).addData(context);
+        Navigator.of(context, rootNavigator: true).push(
+            MaterialPageRoute(builder: (context) => const AlarmEditView()));
       },
       child: CircularSoftButton(
         radius: 30,
