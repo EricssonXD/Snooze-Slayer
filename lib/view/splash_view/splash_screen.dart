@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:clock_analog/res/constants.dart';
-import 'package:clock_analog/view/common_widget/soft_button.dart';
-import 'package:clock_analog/view/home_view/home_view.dart';
-import 'package:clock_analog/view_model/bloc/home_bloc/home_bloc.dart';
+import 'package:snooze_slayer/res/constants.dart';
+import 'package:snooze_slayer/view/common_widget/soft_button.dart';
+import 'package:snooze_slayer/view/home_view/home_view.dart';
+import 'package:snooze_slayer/view_model/bloc/home_bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';

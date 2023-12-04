@@ -1,4 +1,4 @@
-import 'package:clock_analog/view_model/bloc/home_bloc/home_states.dart';
+import 'package:snooze_slayer/view_model/bloc/home_bloc/home_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeBloc extends Cubit<HomeStates> {

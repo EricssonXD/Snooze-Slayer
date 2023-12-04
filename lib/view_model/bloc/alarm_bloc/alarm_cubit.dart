@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:clock_analog/view_model/bloc/alarm_bloc/alarm_states.dart';
-import 'package:clock_analog/view_model/database_helper/database_helper.dart';
+import 'package:snooze_slayer/view_model/bloc/alarm_bloc/alarm_states.dart';
+import 'package:snooze_slayer/view_model/database_helper/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

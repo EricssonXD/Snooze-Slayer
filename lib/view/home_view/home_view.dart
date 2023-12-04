@@ -1,7 +1,7 @@
-import 'package:clock_analog/view/stopwatch_view/stopwatch_view.dart';
-import 'package:clock_analog/view_model/bloc/alarm_bloc/alarm_cubit.dart';
-import 'package:clock_analog/view_model/bloc/stopwatch_bloc/stopwatch_cubit.dart';
-import 'package:clock_analog/view_model/bloc/time_bloc/time_bloc.dart';
+import 'package:snooze_slayer/view/stopwatch_view/stopwatch_view.dart';
+import 'package:snooze_slayer/view_model/bloc/alarm_bloc/alarm_cubit.dart';
+import 'package:snooze_slayer/view_model/bloc/stopwatch_bloc/stopwatch_cubit.dart';
+import 'package:snooze_slayer/view_model/bloc/time_bloc/time_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

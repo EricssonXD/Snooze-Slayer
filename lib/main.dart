@@ -1,5 +1,5 @@
 import 'package:alarm/alarm.dart';
-import 'package:clock_analog/view/splash_view/splash_screen.dart';
+import 'package:snooze_slayer/view/splash_view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

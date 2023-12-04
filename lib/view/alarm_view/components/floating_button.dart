@@ -1,4 +1,4 @@
-import 'package:clock_analog/view/alarm_view/alarm_edit_view.dart';
+import 'package:snooze_slayer/view/alarm_view/alarm_edit_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../common_widget/soft_button.dart';

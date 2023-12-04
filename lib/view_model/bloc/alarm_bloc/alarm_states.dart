@@ -1,4 +1,4 @@
-import 'package:clock_analog/model/alarm_model.dart';
+import 'package:snooze_slayer/model/alarm_model.dart';
 
 abstract class AlarmStates {}
 

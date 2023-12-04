@@ -1,6 +1,6 @@
 import 'package:alarm/alarm.dart';
-import 'package:clock_analog/model/alarm_model.dart';
-import 'package:clock_analog/view_model/database_helper/database_helper.dart';
+import 'package:snooze_slayer/model/alarm_model.dart';
+import 'package:snooze_slayer/view_model/database_helper/database_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

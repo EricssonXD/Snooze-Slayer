@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:clock_analog/view_model/bloc/stopwatch_bloc/stopwatch_states.dart';
+import 'package:snooze_slayer/view_model/bloc/stopwatch_bloc/stopwatch_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StopwatchCubit extends Cubit<StopwatchStates> {

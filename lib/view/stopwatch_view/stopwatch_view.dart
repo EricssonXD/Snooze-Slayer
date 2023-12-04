@@ -1,5 +1,5 @@
 import 'package:analog_clock/analog_clock.dart';
-import 'package:clock_analog/view_model/bloc/stopwatch_bloc/stopwatch_states.dart';
+import 'package:snooze_slayer/view_model/bloc/stopwatch_bloc/stopwatch_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';

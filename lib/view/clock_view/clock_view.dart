@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:clock_analog/view/clock_view/components/clock_body.dart';
-import 'package:clock_analog/view_model/bloc/time_bloc/time_bloc.dart';
+import 'package:snooze_slayer/view/clock_view/components/clock_body.dart';
+import 'package:snooze_slayer/view_model/bloc/time_bloc/time_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../res/constants.dart';

@@ -1,5 +1,5 @@
 import 'package:alarm/alarm.dart';
-import 'package:clock_analog/res/constants.dart';
+import 'package:snooze_slayer/res/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:isar/isar.dart';

@@ -1,5 +1,5 @@
-import 'package:clock_analog/model/alarm_model.dart';
-import 'package:clock_analog/services/alarm_service.dart';
+import 'package:snooze_slayer/model/alarm_model.dart';
+import 'package:snooze_slayer/services/alarm_service.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 

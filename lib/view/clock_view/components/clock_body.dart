@@ -1,4 +1,4 @@
-import 'package:clock_analog/view/clock_view/components/time_text.dart';
+import 'package:snooze_slayer/view/clock_view/components/time_text.dart';
 import 'package:flutter/material.dart';
 
 import 'app_bar.dart';
