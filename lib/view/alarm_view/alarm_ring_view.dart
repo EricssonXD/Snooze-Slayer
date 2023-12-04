@@ -131,9 +131,12 @@ class _AlarmRingViewState extends State<AlarmRingView> {
                   NeumorphicButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        if (isInIsar) AlarmManager().insert(alarm);
-                        Alarm.stop(alarm.id)
-                            .then((_) => Navigator.pop(context));
+                        if (isInIsar) {
+                          AlarmManager().insert(alarm);
+                        } else {
+                          Alarm.stop(alarm.id);
+                        }
+                        Navigator.pop(context);
                       }
                     },
                     child: Text(

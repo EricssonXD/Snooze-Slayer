@@ -31,7 +31,9 @@ class MyApp extends StatelessWidget {
                 side: BorderSide.none,
               )),
           colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.deepPurple, background: backgroundColor),
+            seedColor: Colors.deepPurple,
+            background: backgroundColor,
+          ),
           useMaterial3: true,
         ),
         theme: NeumorphicThemeData(
