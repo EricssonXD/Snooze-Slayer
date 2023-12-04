@@ -21,17 +21,32 @@ mixin _$AlarmModel {
   int get hour => throw _privateConstructorUsedError;
   set hour(int value) => throw _privateConstructorUsedError;
   int get min => throw _privateConstructorUsedError;
-  set min(int value) => throw _privateConstructorUsedError;
-  String get period => throw _privateConstructorUsedError;
-  set period(String value) => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  set min(int value) =>
+      throw _privateConstructorUsedError; // required int alarmId,
+  String get title =>
+      throw _privateConstructorUsedError; // required int alarmId,
   set title(String value) => throw _privateConstructorUsedError;
-  String get day => throw _privateConstructorUsedError;
-  set day(String value) => throw _privateConstructorUsedError;
   bool get isEnabled => throw _privateConstructorUsedError;
   set isEnabled(bool value) => throw _privateConstructorUsedError;
-  int get alarmId => throw _privateConstructorUsedError;
-  set alarmId(int value) => throw _privateConstructorUsedError;
+  double get volume => throw _privateConstructorUsedError;
+  set volume(double value) => throw _privateConstructorUsedError;
+  bool get vibrate => throw _privateConstructorUsedError;
+  set vibrate(bool value) => throw _privateConstructorUsedError;
+  bool get loopAudio => throw _privateConstructorUsedError;
+  set loopAudio(bool value) => throw _privateConstructorUsedError;
+  String get assetAudioPath => throw _privateConstructorUsedError;
+  set assetAudioPath(String value) => throw _privateConstructorUsedError;
+  double get fadeDuration => throw _privateConstructorUsedError;
+  set fadeDuration(double value) => throw _privateConstructorUsedError;
+  String get notificationTitle => throw _privateConstructorUsedError;
+  set notificationTitle(String value) => throw _privateConstructorUsedError;
+  String get notificationBody => throw _privateConstructorUsedError;
+  set notificationBody(String value) => throw _privateConstructorUsedError;
+  bool get enableNotificationOnKill => throw _privateConstructorUsedError;
+  set enableNotificationOnKill(bool value) =>
+      throw _privateConstructorUsedError;
+  bool get androidFullScreenIntent => throw _privateConstructorUsedError;
+  set androidFullScreenIntent(bool value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AlarmModelCopyWith<AlarmModel> get copyWith =>
@@ -48,11 +63,17 @@ abstract class $AlarmModelCopyWith<$Res> {
       {int id,
       int hour,
       int min,
-      String period,
       String title,
-      String day,
       bool isEnabled,
-      int alarmId});
+      double volume,
+      bool vibrate,
+      bool loopAudio,
+      String assetAudioPath,
+      double fadeDuration,
+      String notificationTitle,
+      String notificationBody,
+      bool enableNotificationOnKill,
+      bool androidFullScreenIntent});
 }
 
 /// @nodoc
@@ -71,11 +92,17 @@ class _$AlarmModelCopyWithImpl<$Res, $Val extends AlarmModel>
     Object? id = null,
     Object? hour = null,
     Object? min = null,
-    Object? period = null,
     Object? title = null,
-    Object? day = null,
     Object? isEnabled = null,
-    Object? alarmId = null,
+    Object? volume = null,
+    Object? vibrate = null,
+    Object? loopAudio = null,
+    Object? assetAudioPath = null,
+    Object? fadeDuration = null,
+    Object? notificationTitle = null,
+    Object? notificationBody = null,
+    Object? enableNotificationOnKill = null,
+    Object? androidFullScreenIntent = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -90,26 +117,50 @@ class _$AlarmModelCopyWithImpl<$Res, $Val extends AlarmModel>
           ? _value.min
           : min // ignore: cast_nullable_to_non_nullable
               as int,
-      period: null == period
-          ? _value.period
-          : period // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      day: null == day
-          ? _value.day
-          : day // ignore: cast_nullable_to_non_nullable
               as String,
       isEnabled: null == isEnabled
           ? _value.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
-      alarmId: null == alarmId
-          ? _value.alarmId
-          : alarmId // ignore: cast_nullable_to_non_nullable
-              as int,
+      volume: null == volume
+          ? _value.volume
+          : volume // ignore: cast_nullable_to_non_nullable
+              as double,
+      vibrate: null == vibrate
+          ? _value.vibrate
+          : vibrate // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loopAudio: null == loopAudio
+          ? _value.loopAudio
+          : loopAudio // ignore: cast_nullable_to_non_nullable
+              as bool,
+      assetAudioPath: null == assetAudioPath
+          ? _value.assetAudioPath
+          : assetAudioPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      fadeDuration: null == fadeDuration
+          ? _value.fadeDuration
+          : fadeDuration // ignore: cast_nullable_to_non_nullable
+              as double,
+      notificationTitle: null == notificationTitle
+          ? _value.notificationTitle
+          : notificationTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationBody: null == notificationBody
+          ? _value.notificationBody
+          : notificationBody // ignore: cast_nullable_to_non_nullable
+              as String,
+      enableNotificationOnKill: null == enableNotificationOnKill
+          ? _value.enableNotificationOnKill
+          : enableNotificationOnKill // ignore: cast_nullable_to_non_nullable
+              as bool,
+      androidFullScreenIntent: null == androidFullScreenIntent
+          ? _value.androidFullScreenIntent
+          : androidFullScreenIntent // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -126,11 +177,17 @@ abstract class _$$AlarmModelImplCopyWith<$Res>
       {int id,
       int hour,
       int min,
-      String period,
       String title,
-      String day,
       bool isEnabled,
-      int alarmId});
+      double volume,
+      bool vibrate,
+      bool loopAudio,
+      String assetAudioPath,
+      double fadeDuration,
+      String notificationTitle,
+      String notificationBody,
+      bool enableNotificationOnKill,
+      bool androidFullScreenIntent});
 }
 
 /// @nodoc
@@ -147,11 +204,17 @@ class __$$AlarmModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? hour = null,
     Object? min = null,
-    Object? period = null,
     Object? title = null,
-    Object? day = null,
     Object? isEnabled = null,
-    Object? alarmId = null,
+    Object? volume = null,
+    Object? vibrate = null,
+    Object? loopAudio = null,
+    Object? assetAudioPath = null,
+    Object? fadeDuration = null,
+    Object? notificationTitle = null,
+    Object? notificationBody = null,
+    Object? enableNotificationOnKill = null,
+    Object? androidFullScreenIntent = null,
   }) {
     return _then(_$AlarmModelImpl(
       id: null == id
@@ -166,26 +229,50 @@ class __$$AlarmModelImplCopyWithImpl<$Res>
           ? _value.min
           : min // ignore: cast_nullable_to_non_nullable
               as int,
-      period: null == period
-          ? _value.period
-          : period // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      day: null == day
-          ? _value.day
-          : day // ignore: cast_nullable_to_non_nullable
               as String,
       isEnabled: null == isEnabled
           ? _value.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
-      alarmId: null == alarmId
-          ? _value.alarmId
-          : alarmId // ignore: cast_nullable_to_non_nullable
-              as int,
+      volume: null == volume
+          ? _value.volume
+          : volume // ignore: cast_nullable_to_non_nullable
+              as double,
+      vibrate: null == vibrate
+          ? _value.vibrate
+          : vibrate // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loopAudio: null == loopAudio
+          ? _value.loopAudio
+          : loopAudio // ignore: cast_nullable_to_non_nullable
+              as bool,
+      assetAudioPath: null == assetAudioPath
+          ? _value.assetAudioPath
+          : assetAudioPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      fadeDuration: null == fadeDuration
+          ? _value.fadeDuration
+          : fadeDuration // ignore: cast_nullable_to_non_nullable
+              as double,
+      notificationTitle: null == notificationTitle
+          ? _value.notificationTitle
+          : notificationTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationBody: null == notificationBody
+          ? _value.notificationBody
+          : notificationBody // ignore: cast_nullable_to_non_nullable
+              as String,
+      enableNotificationOnKill: null == enableNotificationOnKill
+          ? _value.enableNotificationOnKill
+          : enableNotificationOnKill // ignore: cast_nullable_to_non_nullable
+              as bool,
+      androidFullScreenIntent: null == androidFullScreenIntent
+          ? _value.androidFullScreenIntent
+          : androidFullScreenIntent // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -197,11 +284,17 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
       {this.id = Isar.autoIncrement,
       required this.hour,
       required this.min,
-      required this.period,
-      required this.title,
-      required this.day,
-      required this.isEnabled,
-      required this.alarmId})
+      this.title = 'Alarm',
+      this.isEnabled = true,
+      this.volume = 1,
+      this.vibrate = true,
+      this.loopAudio = true,
+      this.assetAudioPath = MyAssetAudio.lowTierGod,
+      this.fadeDuration = 3.0,
+      this.notificationTitle = 'Alarm is Playing',
+      this.notificationBody = 'Tap to stop',
+      this.enableNotificationOnKill = false,
+      this.androidFullScreenIntent = true})
       : super._();
 
   @override
@@ -211,20 +304,44 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
   int hour;
   @override
   int min;
+// required int alarmId,
   @override
-  String period;
-  @override
+  @JsonKey()
   String title;
   @override
-  String day;
-  @override
+  @JsonKey()
   bool isEnabled;
   @override
-  int alarmId;
+  @JsonKey()
+  double volume;
+  @override
+  @JsonKey()
+  bool vibrate;
+  @override
+  @JsonKey()
+  bool loopAudio;
+  @override
+  @JsonKey()
+  String assetAudioPath;
+  @override
+  @JsonKey()
+  double fadeDuration;
+  @override
+  @JsonKey()
+  String notificationTitle;
+  @override
+  @JsonKey()
+  String notificationBody;
+  @override
+  @JsonKey()
+  bool enableNotificationOnKill;
+  @override
+  @JsonKey()
+  bool androidFullScreenIntent;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AlarmModel(id: $id, hour: $hour, min: $min, period: $period, title: $title, day: $day, isEnabled: $isEnabled, alarmId: $alarmId)';
+    return 'AlarmModel(id: $id, hour: $hour, min: $min, title: $title, isEnabled: $isEnabled, volume: $volume, vibrate: $vibrate, loopAudio: $loopAudio, assetAudioPath: $assetAudioPath, fadeDuration: $fadeDuration, notificationTitle: $notificationTitle, notificationBody: $notificationBody, enableNotificationOnKill: $enableNotificationOnKill, androidFullScreenIntent: $androidFullScreenIntent)';
   }
 
   @override
@@ -235,11 +352,19 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('hour', hour))
       ..add(DiagnosticsProperty('min', min))
-      ..add(DiagnosticsProperty('period', period))
       ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('day', day))
       ..add(DiagnosticsProperty('isEnabled', isEnabled))
-      ..add(DiagnosticsProperty('alarmId', alarmId));
+      ..add(DiagnosticsProperty('volume', volume))
+      ..add(DiagnosticsProperty('vibrate', vibrate))
+      ..add(DiagnosticsProperty('loopAudio', loopAudio))
+      ..add(DiagnosticsProperty('assetAudioPath', assetAudioPath))
+      ..add(DiagnosticsProperty('fadeDuration', fadeDuration))
+      ..add(DiagnosticsProperty('notificationTitle', notificationTitle))
+      ..add(DiagnosticsProperty('notificationBody', notificationBody))
+      ..add(DiagnosticsProperty(
+          'enableNotificationOnKill', enableNotificationOnKill))
+      ..add(DiagnosticsProperty(
+          'androidFullScreenIntent', androidFullScreenIntent));
   }
 
   @JsonKey(ignore: true)
@@ -254,11 +379,17 @@ abstract class _AlarmModel extends AlarmModel {
       {int id,
       required int hour,
       required int min,
-      required String period,
-      required String title,
-      required String day,
-      required bool isEnabled,
-      required int alarmId}) = _$AlarmModelImpl;
+      String title,
+      bool isEnabled,
+      double volume,
+      bool vibrate,
+      bool loopAudio,
+      String assetAudioPath,
+      double fadeDuration,
+      String notificationTitle,
+      String notificationBody,
+      bool enableNotificationOnKill,
+      bool androidFullScreenIntent}) = _$AlarmModelImpl;
   _AlarmModel._() : super._();
 
   @override
@@ -270,21 +401,39 @@ abstract class _AlarmModel extends AlarmModel {
   @override
   int get min;
   set min(int value);
-  @override
-  String get period;
-  set period(String value);
-  @override
-  String get title;
+  @override // required int alarmId,
+  String get title; // required int alarmId,
   set title(String value);
-  @override
-  String get day;
-  set day(String value);
   @override
   bool get isEnabled;
   set isEnabled(bool value);
   @override
-  int get alarmId;
-  set alarmId(int value);
+  double get volume;
+  set volume(double value);
+  @override
+  bool get vibrate;
+  set vibrate(bool value);
+  @override
+  bool get loopAudio;
+  set loopAudio(bool value);
+  @override
+  String get assetAudioPath;
+  set assetAudioPath(String value);
+  @override
+  double get fadeDuration;
+  set fadeDuration(double value);
+  @override
+  String get notificationTitle;
+  set notificationTitle(String value);
+  @override
+  String get notificationBody;
+  set notificationBody(String value);
+  @override
+  bool get enableNotificationOnKill;
+  set enableNotificationOnKill(bool value);
+  @override
+  bool get androidFullScreenIntent;
+  set androidFullScreenIntent(bool value);
   @override
   @JsonKey(ignore: true)
   _$$AlarmModelImplCopyWith<_$AlarmModelImpl> get copyWith =>

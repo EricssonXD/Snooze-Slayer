@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:clock_analog/services/alarm_service.dart';
 import 'package:clock_analog/view_model/bloc/alarm_bloc/alarm_states.dart';
 import 'package:clock_analog/view_model/database_helper/database_helper.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ class AlarmCubit extends Cubit<AlarmStates> {
     return (await alarmModelStream).listen((event) => getData());
   }
 
-  final DbHelper helper = DbHelper();
+  final AlarmManager helper = AlarmManager();
   List<AlarmModel> list = [];
 
   void getData() async {
@@ -45,19 +44,19 @@ class AlarmCubit extends Cubit<AlarmStates> {
   Future<bool> delete(AlarmModel alarm) async {
     return await helper.delete(alarm).then((value) {
       // getData();
-      return delete(alarm);
+      return value;
     });
   }
 
-  void addData(BuildContext context) async {
-    var picker = await showTimePicker(
+  Future<TimeOfDay?> addData(BuildContext context) async {
+    return await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
       helpText: "Set Alarm Time",
     );
-    if (picker != null) {
-      if (context.mounted) MyAlarm.setAlarm(picker, context);
-    }
+    // if (picker != null) {
+    //   if (context.mounted) MyAlarm.createAlarm(picker, context);
+    // }
   }
 
   Future<Duration> getDifferenceBetweenCurrentTimeAndSelectedTime(

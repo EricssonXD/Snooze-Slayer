@@ -1,5 +1,6 @@
 import 'package:alarm/alarm.dart';
-import 'package:clock_analog/services/alarm_service.dart';
+import 'package:clock_analog/model/alarm_model.dart';
+import 'package:clock_analog/view_model/database_helper/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -20,10 +21,11 @@ class MyAppBar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            MyAlarm.setAlarm(
-                TimeOfDay.fromDateTime(
-                    DateTime.now().add(const Duration(minutes: 1))),
-                context);
+            AlarmManager().insert(AlarmModel(
+              hour: DateTime.now().hour,
+              min: DateTime.now().minute + 1,
+              title: "Alarm Test",
+            ));
           },
           child: CircularSoftButton(
             radius: 20,

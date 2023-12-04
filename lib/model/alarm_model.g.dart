@@ -17,40 +17,70 @@ const AlarmModelSchema = CollectionSchema(
   name: r'AlarmModel',
   id: 1796575337475990193,
   properties: {
-    r'alarmId': PropertySchema(
+    r'androidFullScreenIntent': PropertySchema(
       id: 0,
-      name: r'alarmId',
-      type: IsarType.long,
+      name: r'androidFullScreenIntent',
+      type: IsarType.bool,
     ),
-    r'day': PropertySchema(
+    r'assetAudioPath': PropertySchema(
       id: 1,
-      name: r'day',
+      name: r'assetAudioPath',
       type: IsarType.string,
     ),
-    r'hour': PropertySchema(
+    r'enableNotificationOnKill': PropertySchema(
       id: 2,
+      name: r'enableNotificationOnKill',
+      type: IsarType.bool,
+    ),
+    r'fadeDuration': PropertySchema(
+      id: 3,
+      name: r'fadeDuration',
+      type: IsarType.double,
+    ),
+    r'hour': PropertySchema(
+      id: 4,
       name: r'hour',
       type: IsarType.long,
     ),
     r'isEnabled': PropertySchema(
-      id: 3,
+      id: 5,
       name: r'isEnabled',
       type: IsarType.bool,
     ),
+    r'loopAudio': PropertySchema(
+      id: 6,
+      name: r'loopAudio',
+      type: IsarType.bool,
+    ),
     r'min': PropertySchema(
-      id: 4,
+      id: 7,
       name: r'min',
       type: IsarType.long,
     ),
-    r'period': PropertySchema(
-      id: 5,
-      name: r'period',
+    r'notificationBody': PropertySchema(
+      id: 8,
+      name: r'notificationBody',
+      type: IsarType.string,
+    ),
+    r'notificationTitle': PropertySchema(
+      id: 9,
+      name: r'notificationTitle',
       type: IsarType.string,
     ),
     r'title': PropertySchema(
-      id: 6,
+      id: 10,
       name: r'title',
       type: IsarType.string,
+    ),
+    r'vibrate': PropertySchema(
+      id: 11,
+      name: r'vibrate',
+      type: IsarType.bool,
+    ),
+    r'volume': PropertySchema(
+      id: 12,
+      name: r'volume',
+      type: IsarType.double,
     )
   },
   estimateSize: _alarmModelEstimateSize,
@@ -73,8 +103,9 @@ int _alarmModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.day.length * 3;
-  bytesCount += 3 + object.period.length * 3;
+  bytesCount += 3 + object.assetAudioPath.length * 3;
+  bytesCount += 3 + object.notificationBody.length * 3;
+  bytesCount += 3 + object.notificationTitle.length * 3;
   bytesCount += 3 + object.title.length * 3;
   return bytesCount;
 }
@@ -85,13 +116,19 @@ void _alarmModelSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeLong(offsets[0], object.alarmId);
-  writer.writeString(offsets[1], object.day);
-  writer.writeLong(offsets[2], object.hour);
-  writer.writeBool(offsets[3], object.isEnabled);
-  writer.writeLong(offsets[4], object.min);
-  writer.writeString(offsets[5], object.period);
-  writer.writeString(offsets[6], object.title);
+  writer.writeBool(offsets[0], object.androidFullScreenIntent);
+  writer.writeString(offsets[1], object.assetAudioPath);
+  writer.writeBool(offsets[2], object.enableNotificationOnKill);
+  writer.writeDouble(offsets[3], object.fadeDuration);
+  writer.writeLong(offsets[4], object.hour);
+  writer.writeBool(offsets[5], object.isEnabled);
+  writer.writeBool(offsets[6], object.loopAudio);
+  writer.writeLong(offsets[7], object.min);
+  writer.writeString(offsets[8], object.notificationBody);
+  writer.writeString(offsets[9], object.notificationTitle);
+  writer.writeString(offsets[10], object.title);
+  writer.writeBool(offsets[11], object.vibrate);
+  writer.writeDouble(offsets[12], object.volume);
 }
 
 AlarmModel _alarmModelDeserialize(
@@ -101,14 +138,20 @@ AlarmModel _alarmModelDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = AlarmModel(
-    alarmId: reader.readLong(offsets[0]),
-    day: reader.readString(offsets[1]),
-    hour: reader.readLong(offsets[2]),
+    androidFullScreenIntent: reader.readBool(offsets[0]),
+    assetAudioPath: reader.readString(offsets[1]),
+    enableNotificationOnKill: reader.readBool(offsets[2]),
+    fadeDuration: reader.readDouble(offsets[3]),
+    hour: reader.readLong(offsets[4]),
     id: id,
-    isEnabled: reader.readBool(offsets[3]),
-    min: reader.readLong(offsets[4]),
-    period: reader.readString(offsets[5]),
-    title: reader.readString(offsets[6]),
+    isEnabled: reader.readBool(offsets[5]),
+    loopAudio: reader.readBool(offsets[6]),
+    min: reader.readLong(offsets[7]),
+    notificationBody: reader.readString(offsets[8]),
+    notificationTitle: reader.readString(offsets[9]),
+    title: reader.readString(offsets[10]),
+    vibrate: reader.readBool(offsets[11]),
+    volume: reader.readDouble(offsets[12]),
   );
   return object;
 }
@@ -121,19 +164,31 @@ P _alarmModelDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readLong(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 1:
       return (reader.readString(offset)) as P;
     case 2:
-      return (reader.readLong(offset)) as P;
-    case 3:
       return (reader.readBool(offset)) as P;
+    case 3:
+      return (reader.readDouble(offset)) as P;
     case 4:
       return (reader.readLong(offset)) as P;
     case 5:
-      return (reader.readString(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 6:
+      return (reader.readBool(offset)) as P;
+    case 7:
+      return (reader.readLong(offset)) as P;
+    case 8:
       return (reader.readString(offset)) as P;
+    case 9:
+      return (reader.readString(offset)) as P;
+    case 10:
+      return (reader.readString(offset)) as P;
+    case 11:
+      return (reader.readBool(offset)) as P;
+    case 12:
+      return (reader.readDouble(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -228,74 +283,32 @@ extension AlarmModelQueryWhere
 
 extension AlarmModelQueryFilter
     on QueryBuilder<AlarmModel, AlarmModel, QFilterCondition> {
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> alarmIdEqualTo(
-      int value) {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      androidFullScreenIntentEqualTo(bool value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'alarmId',
+        property: r'androidFullScreenIntent',
         value: value,
       ));
     });
   }
 
   QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
-      alarmIdGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'alarmId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> alarmIdLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'alarmId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> alarmIdBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'alarmId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> dayEqualTo(
+      assetAudioPathEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'day',
+        property: r'assetAudioPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> dayGreaterThan(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      assetAudioPathGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -303,14 +316,15 @@ extension AlarmModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'day',
+        property: r'assetAudioPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> dayLessThan(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      assetAudioPathLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -318,14 +332,15 @@ extension AlarmModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'day',
+        property: r'assetAudioPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> dayBetween(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      assetAudioPathBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -334,7 +349,7 @@ extension AlarmModelQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'day',
+        property: r'assetAudioPath',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -344,70 +359,148 @@ extension AlarmModelQueryFilter
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> dayStartsWith(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      assetAudioPathStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'day',
+        property: r'assetAudioPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> dayEndsWith(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      assetAudioPathEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'day',
+        property: r'assetAudioPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> dayContains(
-      String value,
-      {bool caseSensitive = true}) {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      assetAudioPathContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'day',
+        property: r'assetAudioPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> dayMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      assetAudioPathMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'day',
+        property: r'assetAudioPath',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> dayIsEmpty() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      assetAudioPathIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'day',
+        property: r'assetAudioPath',
         value: '',
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> dayIsNotEmpty() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      assetAudioPathIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'day',
+        property: r'assetAudioPath',
         value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      enableNotificationOnKillEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'enableNotificationOnKill',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      fadeDurationEqualTo(
+    double value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fadeDuration',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      fadeDurationGreaterThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fadeDuration',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      fadeDurationLessThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fadeDuration',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      fadeDurationBetween(
+    double lower,
+    double upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fadeDuration',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
       ));
     });
   }
@@ -528,6 +621,16 @@ extension AlarmModelQueryFilter
     });
   }
 
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> loopAudioEqualTo(
+      bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'loopAudio',
+        value: value,
+      ));
+    });
+  }
+
   QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> minEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
@@ -581,20 +684,22 @@ extension AlarmModelQueryFilter
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> periodEqualTo(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationBodyEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'period',
+        property: r'notificationBody',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> periodGreaterThan(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationBodyGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -602,14 +707,15 @@ extension AlarmModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'period',
+        property: r'notificationBody',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> periodLessThan(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationBodyLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -617,14 +723,15 @@ extension AlarmModelQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'period',
+        property: r'notificationBody',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> periodBetween(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationBodyBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -633,7 +740,7 @@ extension AlarmModelQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'period',
+        property: r'notificationBody',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -643,70 +750,207 @@ extension AlarmModelQueryFilter
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> periodStartsWith(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationBodyStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'period',
+        property: r'notificationBody',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> periodEndsWith(
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationBodyEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'period',
+        property: r'notificationBody',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> periodContains(
-      String value,
-      {bool caseSensitive = true}) {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationBodyContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'period',
+        property: r'notificationBody',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> periodMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationBodyMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'period',
+        property: r'notificationBody',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> periodIsEmpty() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationBodyIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'period',
+        property: r'notificationBody',
         value: '',
       ));
     });
   }
 
   QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
-      periodIsNotEmpty() {
+      notificationBodyIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'period',
+        property: r'notificationBody',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationTitleEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'notificationTitle',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationTitleGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'notificationTitle',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationTitleLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'notificationTitle',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationTitleBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'notificationTitle',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationTitleStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'notificationTitle',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationTitleEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'notificationTitle',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationTitleContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'notificationTitle',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationTitleMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'notificationTitle',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationTitleIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'notificationTitle',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      notificationTitleIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'notificationTitle',
         value: '',
       ));
     });
@@ -842,6 +1086,78 @@ extension AlarmModelQueryFilter
       ));
     });
   }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> vibrateEqualTo(
+      bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'vibrate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> volumeEqualTo(
+    double value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'volume',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> volumeGreaterThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'volume',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> volumeLessThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'volume',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> volumeBetween(
+    double lower,
+    double upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'volume',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
+      ));
+    });
+  }
 }
 
 extension AlarmModelQueryObject
@@ -852,27 +1168,56 @@ extension AlarmModelQueryLinks
 
 extension AlarmModelQuerySortBy
     on QueryBuilder<AlarmModel, AlarmModel, QSortBy> {
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByAlarmId() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      sortByAndroidFullScreenIntent() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'alarmId', Sort.asc);
+      return query.addSortBy(r'androidFullScreenIntent', Sort.asc);
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByAlarmIdDesc() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      sortByAndroidFullScreenIntentDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'alarmId', Sort.desc);
+      return query.addSortBy(r'androidFullScreenIntent', Sort.desc);
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByDay() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByAssetAudioPath() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'day', Sort.asc);
+      return query.addSortBy(r'assetAudioPath', Sort.asc);
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByDayDesc() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      sortByAssetAudioPathDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'day', Sort.desc);
+      return query.addSortBy(r'assetAudioPath', Sort.desc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      sortByEnableNotificationOnKill() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'enableNotificationOnKill', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      sortByEnableNotificationOnKillDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'enableNotificationOnKill', Sort.desc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByFadeDuration() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fadeDuration', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByFadeDurationDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fadeDuration', Sort.desc);
     });
   }
 
@@ -900,6 +1245,18 @@ extension AlarmModelQuerySortBy
     });
   }
 
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByLoopAudio() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'loopAudio', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByLoopAudioDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'loopAudio', Sort.desc);
+    });
+  }
+
   QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByMin() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'min', Sort.asc);
@@ -912,15 +1269,29 @@ extension AlarmModelQuerySortBy
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByPeriod() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByNotificationBody() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'period', Sort.asc);
+      return query.addSortBy(r'notificationBody', Sort.asc);
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByPeriodDesc() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      sortByNotificationBodyDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'period', Sort.desc);
+      return query.addSortBy(r'notificationBody', Sort.desc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByNotificationTitle() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'notificationTitle', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      sortByNotificationTitleDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'notificationTitle', Sort.desc);
     });
   }
 
@@ -935,31 +1306,84 @@ extension AlarmModelQuerySortBy
       return query.addSortBy(r'title', Sort.desc);
     });
   }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByVibrate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'vibrate', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByVibrateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'vibrate', Sort.desc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByVolume() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'volume', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByVolumeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'volume', Sort.desc);
+    });
+  }
 }
 
 extension AlarmModelQuerySortThenBy
     on QueryBuilder<AlarmModel, AlarmModel, QSortThenBy> {
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByAlarmId() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      thenByAndroidFullScreenIntent() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'alarmId', Sort.asc);
+      return query.addSortBy(r'androidFullScreenIntent', Sort.asc);
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByAlarmIdDesc() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      thenByAndroidFullScreenIntentDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'alarmId', Sort.desc);
+      return query.addSortBy(r'androidFullScreenIntent', Sort.desc);
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByDay() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByAssetAudioPath() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'day', Sort.asc);
+      return query.addSortBy(r'assetAudioPath', Sort.asc);
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByDayDesc() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      thenByAssetAudioPathDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'day', Sort.desc);
+      return query.addSortBy(r'assetAudioPath', Sort.desc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      thenByEnableNotificationOnKill() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'enableNotificationOnKill', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      thenByEnableNotificationOnKillDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'enableNotificationOnKill', Sort.desc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByFadeDuration() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fadeDuration', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByFadeDurationDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fadeDuration', Sort.desc);
     });
   }
 
@@ -999,6 +1423,18 @@ extension AlarmModelQuerySortThenBy
     });
   }
 
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByLoopAudio() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'loopAudio', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByLoopAudioDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'loopAudio', Sort.desc);
+    });
+  }
+
   QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByMin() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'min', Sort.asc);
@@ -1011,15 +1447,29 @@ extension AlarmModelQuerySortThenBy
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByPeriod() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByNotificationBody() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'period', Sort.asc);
+      return query.addSortBy(r'notificationBody', Sort.asc);
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByPeriodDesc() {
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      thenByNotificationBodyDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'period', Sort.desc);
+      return query.addSortBy(r'notificationBody', Sort.desc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByNotificationTitle() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'notificationTitle', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy>
+      thenByNotificationTitleDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'notificationTitle', Sort.desc);
     });
   }
 
@@ -1034,20 +1484,59 @@ extension AlarmModelQuerySortThenBy
       return query.addSortBy(r'title', Sort.desc);
     });
   }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByVibrate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'vibrate', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByVibrateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'vibrate', Sort.desc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByVolume() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'volume', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByVolumeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'volume', Sort.desc);
+    });
+  }
 }
 
 extension AlarmModelQueryWhereDistinct
     on QueryBuilder<AlarmModel, AlarmModel, QDistinct> {
-  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByAlarmId() {
+  QueryBuilder<AlarmModel, AlarmModel, QDistinct>
+      distinctByAndroidFullScreenIntent() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'alarmId');
+      return query.addDistinctBy(r'androidFullScreenIntent');
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByDay(
+  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByAssetAudioPath(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'day', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'assetAudioPath',
+          caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QDistinct>
+      distinctByEnableNotificationOnKill() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'enableNotificationOnKill');
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByFadeDuration() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'fadeDuration');
     });
   }
 
@@ -1063,16 +1552,31 @@ extension AlarmModelQueryWhereDistinct
     });
   }
 
+  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByLoopAudio() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'loopAudio');
+    });
+  }
+
   QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByMin() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'min');
     });
   }
 
-  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByPeriod(
+  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByNotificationBody(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'period', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'notificationBody',
+          caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByNotificationTitle(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'notificationTitle',
+          caseSensitive: caseSensitive);
     });
   }
 
@@ -1080,6 +1584,18 @@ extension AlarmModelQueryWhereDistinct
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'title', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByVibrate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'vibrate');
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByVolume() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'volume');
     });
   }
 }
@@ -1092,15 +1608,29 @@ extension AlarmModelQueryProperty
     });
   }
 
-  QueryBuilder<AlarmModel, int, QQueryOperations> alarmIdProperty() {
+  QueryBuilder<AlarmModel, bool, QQueryOperations>
+      androidFullScreenIntentProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'alarmId');
+      return query.addPropertyName(r'androidFullScreenIntent');
     });
   }
 
-  QueryBuilder<AlarmModel, String, QQueryOperations> dayProperty() {
+  QueryBuilder<AlarmModel, String, QQueryOperations> assetAudioPathProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'day');
+      return query.addPropertyName(r'assetAudioPath');
+    });
+  }
+
+  QueryBuilder<AlarmModel, bool, QQueryOperations>
+      enableNotificationOnKillProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'enableNotificationOnKill');
+    });
+  }
+
+  QueryBuilder<AlarmModel, double, QQueryOperations> fadeDurationProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'fadeDuration');
     });
   }
 
@@ -1116,21 +1646,47 @@ extension AlarmModelQueryProperty
     });
   }
 
+  QueryBuilder<AlarmModel, bool, QQueryOperations> loopAudioProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'loopAudio');
+    });
+  }
+
   QueryBuilder<AlarmModel, int, QQueryOperations> minProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'min');
     });
   }
 
-  QueryBuilder<AlarmModel, String, QQueryOperations> periodProperty() {
+  QueryBuilder<AlarmModel, String, QQueryOperations>
+      notificationBodyProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'period');
+      return query.addPropertyName(r'notificationBody');
+    });
+  }
+
+  QueryBuilder<AlarmModel, String, QQueryOperations>
+      notificationTitleProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'notificationTitle');
     });
   }
 
   QueryBuilder<AlarmModel, String, QQueryOperations> titleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'title');
+    });
+  }
+
+  QueryBuilder<AlarmModel, bool, QQueryOperations> vibrateProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'vibrate');
+    });
+  }
+
+  QueryBuilder<AlarmModel, double, QQueryOperations> volumeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'volume');
     });
   }
 }

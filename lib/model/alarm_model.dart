@@ -1,3 +1,4 @@
+import 'package:clock_analog/res/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:isar/isar.dart';
@@ -13,11 +14,18 @@ class AlarmModel with _$AlarmModel {
     @Default(Isar.autoIncrement) int id,
     required int hour,
     required int min,
-    required String period,
-    required String title,
-    required String day,
-    required bool isEnabled,
-    required int alarmId,
+    // required int alarmId,
+    @Default('Alarm') String title,
+    @Default(true) bool isEnabled,
+    @Default(1) double volume,
+    @Default(true) bool vibrate,
+    @Default(true) bool loopAudio,
+    @Default(MyAssetAudio.lowTierGod) String assetAudioPath,
+    @Default(3.0) double fadeDuration,
+    @Default('Alarm is Playing') String notificationTitle,
+    @Default('Tap to stop') String notificationBody,
+    @Default(false) bool enableNotificationOnKill,
+    @Default(true) bool androidFullScreenIntent,
   }) = _AlarmModel;
 
   @override
@@ -27,50 +35,3 @@ class AlarmModel with _$AlarmModel {
   // factory AlarmModel.fromJson(Map<String, dynamic> json) =>
   //     _$AlarmModelFromJson(json);
 }
-
-// class AlarmModel {
-//   String? key;
-//   int? hour;
-//   int? min;
-//   String? period;
-//   String? title;
-//   String? day;
-//   bool? isEnabled;
-//   int? alarmId;
-
-//   AlarmModel(
-//       {required this.key,
-//       required this.hour,
-//       required this.period,
-//       required this.min,
-//       required this.day,
-//       required this.isEnabled,
-//       required this.alarmId,
-//       required this.title});
-
-//   AlarmModel.fromMap(Map<String, dynamic> map) {
-//     key = map['key'];
-//     hour = int.tryParse(map['hour']);
-//     min = int.tryParse(map['min']);
-//     period = map['period'];
-//     title = map['title'];
-//     day = map['day'];
-//     isEnabled = map['isEnabled'] is bool
-//         ? map['isEnabled']
-//         : bool.tryParse(map['isEnabled']);
-//     alarmId = int.tryParse(map['alarmId']);
-//   }
-
-//   Map<String, Object?> toMap() {
-//     return {
-//       'key': key,
-//       'hour': hour,
-//       'min': min,
-//       'period': period,
-//       'title': title,
-//       'day': day,
-//       'isEnabled': isEnabled.toString(),
-//       'alarmId': alarmId
-//     };
-//   }
-// }

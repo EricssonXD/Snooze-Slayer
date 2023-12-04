@@ -1,8 +1,9 @@
 import 'package:clock_analog/model/alarm_model.dart';
+import 'package:clock_analog/services/alarm_service.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
-class DbHelper {
+class AlarmManager {
   Isar? _isar;
 
   Future<Isar> get isar async {
@@ -18,14 +19,19 @@ class DbHelper {
     return _isar!;
   }
 
-  Future<AlarmModel> insert(AlarmModel model) async {
+  Future<AlarmModel> insert(AlarmModel alarm) async {
     Isar dbclient = await isar;
 
+    late final int id;
     await dbclient.writeTxn(() async {
-      await dbclient.alarmModels.put(model);
+      id = await dbclient.alarmModels.put(alarm);
     });
+    alarm.id = id;
+    alarm.isEnabled
+        ? NativeAlarm.setAlarm(alarm)
+        : NativeAlarm.deleteAlarm(alarm);
 
-    return model;
+    return alarm;
   }
 
   Future<bool> delete(AlarmModel model) async {
@@ -35,6 +41,7 @@ class DbHelper {
     await isarClient.writeTxn(() async {
       result = await isarClient.alarmModels.delete(model.id); // delete
     });
+    NativeAlarm.deleteAlarm(model);
     return result;
   }
 

@@ -32,12 +32,12 @@ class _AlarmEditViewState extends State<AlarmEditView> {
                       color: Colors.black54,
                       fontSize: 30,
                     )),
-            TextSpan(
-                text: " ${alarm.period}",
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineLarge!
-                    .copyWith(color: Colors.black54, fontSize: 17))
+            // TextSpan(
+            //     text: " ${alarm.period}",
+            //     style: Theme.of(context)
+            //         .textTheme
+            //         .headlineLarge!
+            //         .copyWith(color: Colors.black54, fontSize: 17))
           ])),
         ],
       ),
@@ -46,10 +46,16 @@ class _AlarmEditViewState extends State<AlarmEditView> {
         children: [
           Expanded(
             child: TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.of(context).pop(),
               child: const Text("Cancel"),
             ),
-          )
+          ),
+          Expanded(
+            child: TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text("Save"),
+            ),
+          ),
         ],
       )),
     );

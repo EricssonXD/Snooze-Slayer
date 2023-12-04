@@ -37,13 +37,6 @@ class _AlarmListState extends State<AlarmList> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AlarmCubit, AlarmStates>(
-      // buildWhen: (previous, current) {
-      //   if (current is HasData) {
-      //     return true;
-      //   } else {
-      //     return false;
-      //   }
-      // },
       builder: (context, state) {
         if (state is HasData) {
           final data = state.alarms;
@@ -81,12 +74,12 @@ class _AlarmListState extends State<AlarmList> {
                                   color: Colors.black54,
                                   fontSize: 30,
                                 )),
-                        TextSpan(
-                            text: " ${alarm.period}",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineLarge!
-                                .copyWith(color: Colors.black54, fontSize: 17))
+                        // TextSpan(
+                        //     text: " ${alarm.period}",
+                        //     style: Theme.of(context)
+                        //         .textTheme
+                        //         .headlineLarge!
+                        //         .copyWith(color: Colors.black54, fontSize: 17))
                       ])),
                       Column(
                         children: [
@@ -100,16 +93,16 @@ class _AlarmListState extends State<AlarmList> {
                                     height: 0,
                                     color: Colors.black54),
                           ),
-                          Text(
-                            alarm.day,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(
-                                    fontSize: 10,
-                                    height: 0,
-                                    color: Colors.black54),
-                          )
+                          // Text(
+                          //   alarm.day,
+                          //   style: Theme.of(context)
+                          //       .textTheme
+                          //       .headlineSmall!
+                          //       .copyWith(
+                          //           fontSize: 10,
+                          //           height: 0,
+                          //           color: Colors.black54),
+                          // )
                         ],
                       ),
                       Switch(

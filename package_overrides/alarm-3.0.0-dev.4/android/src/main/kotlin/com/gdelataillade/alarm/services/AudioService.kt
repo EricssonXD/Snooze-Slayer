@@ -51,30 +51,33 @@ class AudioService(private val context: Context) {
         mediaPlayers.remove(id)
     }
 
-    private fun startFadeIn(mediaPlayer: MediaPlayer, duration: Double) {
-        val maxVolume = 1.0f // Use 1.0f for MediaPlayer's max volume
-        val fadeDuration = (duration * 1000).toLong() // Convert seconds to milliseconds
-        val fadeInterval = 100L // Interval for volume increment
-        val numberOfSteps = fadeDuration / fadeInterval // Number of volume increments
-        val deltaVolume = maxVolume / numberOfSteps // Volume increment per step
+private fun startFadeIn(mediaPlayer: MediaPlayer, duration: Double) {
+   mediaPlayer.setOnPreparedListener {
+       val maxVolume = 1.0f // Use 1.0f for MediaPlayer's max volume
+       val fadeDuration = (duration * 1000).toLong() // Convert seconds to milliseconds
+       val fadeInterval = 100L // Interval for volume increment
+       val numberOfSteps = fadeDuration / fadeInterval // Number of volume increments
+       val deltaVolume = maxVolume / numberOfSteps // Volume increment per step
 
-        val timer = Timer(true) // Use a daemon thread
-        var volume = 0.0f
+       val timer = Timer(true) // Use a daemon thread
+       var volume = 0.0f
 
-        val timerTask = object : TimerTask() {
-            override fun run() {
-                mediaPlayer.setVolume(volume, volume) // Set volume for both channels
-                volume += deltaVolume
+       val timerTask = object : TimerTask() {
+           override fun run() {
+               mediaPlayer.setVolume(volume, volume) // Set volume for both channels
+               volume += deltaVolume
 
-                if (volume >= maxVolume) {
-                    mediaPlayer.setVolume(maxVolume, maxVolume) // Ensure max volume is set
-                    this.cancel() // Cancel the timer
-                }
-            }
-        }
+               if (volume >= maxVolume) {
+                  mediaPlayer.setVolume(maxVolume, maxVolume) // Ensure max volume is set
+                  this.cancel() // Cancel the timer
+               }
+           }
+       }
 
-        timer.schedule(timerTask, 0, fadeInterval)
-    }
+       timer.schedule(timerTask, 0, fadeInterval)
+   }
+}
+
 
     fun cleanUp() {
         mediaPlayers.forEach { (_, mediaPlayer) ->
