@@ -1,6 +1,6 @@
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:snooze_slayer/model/alarm_model.dart';
 import 'package:snooze_slayer/view_model/database_helper/database_helper.dart';
-import 'package:flutter/material.dart';
 
 class AlarmEditView extends StatefulWidget {
   const AlarmEditView({
@@ -29,13 +29,14 @@ class _AlarmEditViewState extends State<AlarmEditView> {
 
   @override
   Widget build(BuildContext context) {
-    var timeText = InkWell(
+    Widget timeText = InkWell(
       onTap: () async {
         final time = await showTimePicker(
           context: context,
           initialTime: TimeOfDay(hour: alarm.hour, minute: alarm.minute),
           helpText: "Set Alarm Time",
         );
+
         if (time != null) {
           setState(() {
             alarm
@@ -62,26 +63,31 @@ class _AlarmEditViewState extends State<AlarmEditView> {
             const Spacer(),
             timeText,
             const Spacer(),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: NeumorphicButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Center(child: Text("Cancel")),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: NeumorphicButton(
+                      onPressed: () => saveAlarm(context),
+                      child: const Center(child: Text("Save")),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-          child: Row(
-        children: [
-          Expanded(
-            child: TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text("Cancel"),
-            ),
-          ),
-          Expanded(
-            child: TextButton(
-              onPressed: () => saveAlarm(context),
-              child: const Text("Save"),
-            ),
-          ),
-        ],
-      )),
     );
   }
 }

@@ -35,12 +35,14 @@ class _AlarmScreenState extends State<AlarmScreen> {
     //   print(e);
     // }
     // Alarm.ringStream.stream.
-    subscription ??= Alarm.ringStream.stream.listen(
-      (alarmSettings) {
-        navigateToRingScreen(alarmSettings);
-        debugPrint("YOOOOOOringringring");
-      },
-    );
+    if (!Alarm.ringStream.hasListener) {
+      subscription ??= Alarm.ringStream.stream.listen(
+        (alarmSettings) {
+          navigateToRingScreen(alarmSettings);
+          debugPrint("YOOOOOOringringring");
+        },
+      );
+    }
   }
 
   Future<void> navigateToRingScreen(AlarmSettings alarmSettings) async {

@@ -49,4 +49,9 @@ class AlarmManager {
     Isar dbClient = await isar;
     return await dbClient.alarmModels.where().findAll();
   }
+
+  Future<AlarmModel?> getAlarm(int id) async {
+    Isar dbClient = await isar;
+    return await dbClient.alarmModels.get(id);
+  }
 }
