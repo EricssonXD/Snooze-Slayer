@@ -11,8 +11,7 @@ class WorldList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
+      child: Column(
         children: [
           WorldCard(
               plusTime: 3,
