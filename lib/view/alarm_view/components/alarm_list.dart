@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:snooze_slayer/model/alarm_model.dart';
+import 'package:snooze_slayer/res/theme.dart';
 import 'package:snooze_slayer/view/common_widget/warning.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -109,8 +110,8 @@ class _AlarmListState extends State<AlarmList> {
                       Switch(
                         hoverColor: Colors.white,
                         activeTrackColor: Colors.white,
-                        thumbColor:
-                            const MaterialStatePropertyAll(Colors.pinkAccent),
+                        thumbColor: const MaterialStatePropertyAll(
+                            MyTheme.highlightColor),
                         inactiveThumbColor: Colors.grey,
                         inactiveTrackColor: Colors.grey.withOpacity(.1),
                         trackOutlineColor: const MaterialStatePropertyAll(

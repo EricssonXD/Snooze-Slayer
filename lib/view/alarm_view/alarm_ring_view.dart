@@ -1,10 +1,8 @@
 import 'dart:math';
 
 import 'package:alarm/alarm.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:snooze_slayer/model/alarm_model.dart';
-import 'package:snooze_slayer/res/constants.dart';
 import 'package:snooze_slayer/view_model/database_helper/database_helper.dart';
 
 class AlarmRingView extends StatefulWidget {
@@ -66,7 +64,6 @@ class _AlarmRingViewState extends State<AlarmRingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Form(
           key: _formKey,

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:snooze_slayer/res/constants.dart';
+import 'package:snooze_slayer/res/theme.dart';
 import 'package:snooze_slayer/view/common_widget/soft_button.dart';
 import 'package:snooze_slayer/view/home_view/home_view.dart';
 import 'package:snooze_slayer/view_model/bloc/home_bloc/home_bloc.dart';
@@ -45,7 +45,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
       body: Center(
         child: CircularSoftButton(
             radius: 60,
@@ -54,8 +53,8 @@ class _SplashScreenState extends State<SplashScreen> {
               'assets/icons/clock.svg',
               height: 35,
               width: 35,
-              colorFilter:
-                  const ColorFilter.mode(Colors.pinkAccent, BlendMode.srcIn),
+              colorFilter: const ColorFilter.mode(
+                  MyTheme.highlightColor, BlendMode.srcIn),
             ))),
       ),
     );

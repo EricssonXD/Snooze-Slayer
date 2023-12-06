@@ -1,9 +1,9 @@
 import 'package:analog_clock/analog_clock.dart';
+import 'package:snooze_slayer/res/theme.dart';
 import 'package:snooze_slayer/view_model/bloc/stopwatch_bloc/stopwatch_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../res/constants.dart';
 import '../../view_model/bloc/stopwatch_bloc/stopwatch_cubit.dart';
 import '../common_widget/soft_button.dart';
 
@@ -18,7 +18,6 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -36,7 +35,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                     radius: 20,
                     icon: const Icon(
                       Icons.settings,
-                      color: Colors.pink,
+                      color: MyTheme.highlightColor,
                     ),
                   )
                 ],
@@ -103,19 +102,19 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(
                           MediaQuery.of(context).size.width),
-                      gradient: LinearGradient(
-                        colors: [shadowColor, lightShadowColor],
+                      gradient: const LinearGradient(
+                        colors: [MyTheme.shadowColor, MyTheme.lightShadowColor],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
-                            color: shadowColor,
-                            offset: const Offset(8, 6),
+                            color: MyTheme.shadowColor,
+                            offset: Offset(8, 6),
                             blurRadius: 12),
                         BoxShadow(
-                            color: lightShadowColor,
-                            offset: const Offset(-8, -6),
+                            color: MyTheme.lightShadowColor,
+                            offset: Offset(-8, -6),
                             blurRadius: 12),
                       ],
                     ),
@@ -138,7 +137,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                               hourHandColor: Colors.transparent,
                               minuteHandColor: Colors.transparent,
                               numberColor: Colors.black45,
-                              secondHandColor: Colors.pinkAccent,
+                              secondHandColor: MyTheme.highlightColor,
                               showNumbers: true,
                               showAllNumbers: true,
                               showDigitalClock: false,
@@ -151,7 +150,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                                 hourHandColor: Colors.transparent,
                                 minuteHandColor: Colors.transparent,
                                 numberColor: Colors.black45,
-                                secondHandColor: Colors.pinkAccent,
+                                secondHandColor: MyTheme.highlightColor,
                                 showNumbers: true,
                                 showAllNumbers: true,
                                 showDigitalClock: false,

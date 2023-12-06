@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../res/constants.dart';
+import 'package:snooze_slayer/res/theme.dart';
 import '../../../view_model/bloc/time_bloc/time_bloc.dart';
 import '../../../view_model/bloc/time_bloc/time_states.dart';
 
@@ -53,17 +53,17 @@ class WorldCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: LinearGradient(
-          colors: [shadowColor, lightShadowColor],
+        gradient: const LinearGradient(
+          colors: [MyTheme.shadowColor, MyTheme.lightShadowColor],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-              color: shadowColor, offset: const Offset(8, 8), blurRadius: 12),
+              color: MyTheme.shadowColor, offset: Offset(8, 8), blurRadius: 12),
           BoxShadow(
-              color: lightShadowColor,
-              offset: const Offset(-8, -8),
+              color: MyTheme.lightShadowColor,
+              offset: Offset(-8, -8),
               blurRadius: 12),
         ],
       ),

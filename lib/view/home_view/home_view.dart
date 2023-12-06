@@ -1,3 +1,4 @@
+import 'package:snooze_slayer/res/theme.dart';
 import 'package:snooze_slayer/view/stopwatch_view/stopwatch_view.dart';
 import 'package:snooze_slayer/view_model/bloc/alarm_bloc/alarm_cubit.dart';
 import 'package:snooze_slayer/view_model/bloc/stopwatch_bloc/stopwatch_cubit.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import '../../res/constants.dart';
 import '../alarm_view/alarm_view.dart';
 import '../clock_view/clock_view.dart';
 
@@ -33,12 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: backgroundColor,
         bottomNavigationBar: Container(
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           child: GNav(
             selectedIndex: _currentIndex,
-            backgroundColor: backgroundColor,
+            backgroundColor: MyTheme.backgroundColor,
             rippleColor: Colors.white,
             hoverColor: Colors.white,
             haptic: true,
@@ -52,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
             duration: const Duration(milliseconds: 300),
             gap: 8,
             color: Colors.black38,
-            activeColor: Colors.pinkAccent,
+            activeColor: MyTheme.highlightColor,
             iconSize: 24,
             tabBackgroundColor: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),

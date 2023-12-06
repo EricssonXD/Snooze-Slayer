@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:alarm/alarm.dart';
-import 'package:snooze_slayer/res/constants.dart';
 import 'package:snooze_slayer/view/alarm_view/alarm_ring_view.dart';
 import 'package:snooze_slayer/view/alarm_view/components/body.dart';
 import 'package:snooze_slayer/view/alarm_view/components/floating_button.dart';
@@ -59,11 +58,10 @@ class _AlarmScreenState extends State<AlarmScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor,
+    return const Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const FloatingButton(),
-      body: const SafeArea(
+      floatingActionButton: FloatingButton(),
+      body: SafeArea(
         child: Body(),
       ),
     );

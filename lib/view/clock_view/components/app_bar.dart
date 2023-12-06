@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:snooze_slayer/res/theme.dart';
 
 import '../../common_widget/soft_button.dart';
 
@@ -18,7 +19,7 @@ class ClockAppBar extends StatelessWidget {
             radius: 20,
             icon: const Icon(
               Icons.settings,
-              color: Colors.pink,
+              color: MyTheme.highlightColor,
             ),
           )
         ],

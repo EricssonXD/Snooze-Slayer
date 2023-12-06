@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../res/constants.dart';
+import 'package:snooze_slayer/res/theme.dart';
 
 class CircularSoftButton extends StatelessWidget {
   late final double radius;
@@ -23,12 +23,12 @@ class CircularSoftButton extends StatelessWidget {
             width: radius * 2,
             height: radius * 2,
             decoration: BoxDecoration(
-              color: backgroundColor,
+              color: MyTheme.backgroundColor,
               borderRadius: BorderRadius.circular(radius),
               boxShadow: [
-                BoxShadow(
-                  color: shadowColor,
-                  offset: const Offset(8, 6),
+                const BoxShadow(
+                  color: MyTheme.shadowColor,
+                  offset: Offset(8, 6),
                   blurRadius: 12,
                 ),
                 BoxShadow(

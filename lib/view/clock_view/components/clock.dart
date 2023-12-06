@@ -1,7 +1,6 @@
 import 'package:analog_clock/analog_clock.dart';
 import 'package:flutter/material.dart';
-
-import '../../../res/constants.dart';
+import 'package:snooze_slayer/res/theme.dart';
 
 class Clock extends StatelessWidget {
   const Clock({super.key});
@@ -16,19 +15,19 @@ class Clock extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius:
                 BorderRadius.circular(MediaQuery.of(context).size.width),
-            gradient: LinearGradient(
-              colors: [shadowColor, lightShadowColor],
+            gradient: const LinearGradient(
+              colors: [MyTheme.shadowColor, MyTheme.lightShadowColor],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
-                  color: shadowColor,
-                  offset: const Offset(8, 6),
+                  color: MyTheme.shadowColor,
+                  offset: Offset(8, 6),
                   blurRadius: 12),
               BoxShadow(
-                  color: lightShadowColor,
-                  offset: const Offset(-8, -6),
+                  color: MyTheme.lightShadowColor,
+                  offset: Offset(-8, -6),
                   blurRadius: 12),
             ],
           ),
@@ -43,7 +42,7 @@ class Clock extends StatelessWidget {
               hourHandColor: Colors.black,
               minuteHandColor: Colors.black54,
               numberColor: Colors.black45,
-              secondHandColor: Colors.pinkAccent,
+              secondHandColor: MyTheme.highlightColor,
               showNumbers: true,
               showAllNumbers: true,
               showDigitalClock: false,

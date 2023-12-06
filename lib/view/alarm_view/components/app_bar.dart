@@ -1,5 +1,6 @@
 import 'package:alarm/alarm.dart';
 import 'package:snooze_slayer/model/alarm_model.dart';
+import 'package:snooze_slayer/res/theme.dart';
 import 'package:snooze_slayer/view_model/database_helper/database_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class MyAppBar extends StatelessWidget {
             radius: 20,
             icon: const Icon(
               Icons.settings,
-              color: Colors.pink,
+              color: MyTheme.highlightColor,
             ),
           ),
         )

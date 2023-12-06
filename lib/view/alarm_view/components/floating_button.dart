@@ -1,4 +1,5 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:snooze_slayer/res/theme.dart';
 import 'package:snooze_slayer/view/alarm_view/alarm_edit_view.dart';
 
 class FloatingButton extends StatelessWidget {
@@ -15,7 +16,7 @@ class FloatingButton extends StatelessWidget {
         ),
         child: const Icon(
           Icons.add,
-          color: Colors.pinkAccent,
+          color: MyTheme.highlightColor,
           size: 30,
         ),
         onPressed: () {
