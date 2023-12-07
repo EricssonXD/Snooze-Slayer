@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:alarm/alarm.dart';
 import 'package:snooze_slayer/res/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -27,6 +29,7 @@ class AlarmModel with _$AlarmModel {
     @Default('Tap to stop') String notificationBody,
     @Default(false) bool enableNotificationOnKill,
     @Default(true) bool androidFullScreenIntent,
+    @enumerated @Default(AlarmRingType.normal) AlarmRingType ringType,
   }) = _AlarmModel;
 
   @override
@@ -57,4 +60,9 @@ DateTime _modelToNextTime(int hour, int minute) {
     dateTime = now.add(const Duration(days: 1));
   }
   return dateTime;
+}
+
+enum AlarmRingType {
+  normal,
+  letters,
 }

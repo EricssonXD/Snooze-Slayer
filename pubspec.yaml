@@ -20,7 +20,7 @@ dependencies:
   sqflite: ^2.3.0
   flutter_neumorphic: ^3.2.0
   path_provider: ^2.1.1
-  alarm: ^3.0.0-dev.4
+  alarm: ^3.0.0-dev.6
   path: ^1.8.3
   isar: ^3.1.0+1
   isar_flutter_libs: ^3.1.0+1
@@ -28,8 +28,8 @@ dependencies:
   permission_handler: ^11.0.1
 
 dependency_overrides:
-  alarm:
-    path: package_overrides/alarm-3.0.0-dev.4/
+  # alarm:
+  #   path: package_overrides/alarm-3.0.0-dev.4/
   flutter_neumorphic:
     path: package_overrides/flutter_neumorphic-3.2.0/
 

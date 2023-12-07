@@ -67,18 +67,24 @@ const AlarmModelSchema = CollectionSchema(
       name: r'notificationTitle',
       type: IsarType.string,
     ),
-    r'title': PropertySchema(
+    r'ringType': PropertySchema(
       id: 10,
+      name: r'ringType',
+      type: IsarType.byte,
+      enumMap: _AlarmModelringTypeEnumValueMap,
+    ),
+    r'title': PropertySchema(
+      id: 11,
       name: r'title',
       type: IsarType.string,
     ),
     r'vibrate': PropertySchema(
-      id: 11,
+      id: 12,
       name: r'vibrate',
       type: IsarType.bool,
     ),
     r'volume': PropertySchema(
-      id: 12,
+      id: 13,
       name: r'volume',
       type: IsarType.double,
     )
@@ -126,9 +132,10 @@ void _alarmModelSerialize(
   writer.writeLong(offsets[7], object.minute);
   writer.writeString(offsets[8], object.notificationBody);
   writer.writeString(offsets[9], object.notificationTitle);
-  writer.writeString(offsets[10], object.title);
-  writer.writeBool(offsets[11], object.vibrate);
-  writer.writeDouble(offsets[12], object.volume);
+  writer.writeByte(offsets[10], object.ringType.index);
+  writer.writeString(offsets[11], object.title);
+  writer.writeBool(offsets[12], object.vibrate);
+  writer.writeDouble(offsets[13], object.volume);
 }
 
 AlarmModel _alarmModelDeserialize(
@@ -149,9 +156,12 @@ AlarmModel _alarmModelDeserialize(
     minute: reader.readLong(offsets[7]),
     notificationBody: reader.readString(offsets[8]),
     notificationTitle: reader.readString(offsets[9]),
-    title: reader.readString(offsets[10]),
-    vibrate: reader.readBool(offsets[11]),
-    volume: reader.readDouble(offsets[12]),
+    ringType:
+        _AlarmModelringTypeValueEnumMap[reader.readByteOrNull(offsets[10])] ??
+            AlarmRingType.normal,
+    title: reader.readString(offsets[11]),
+    vibrate: reader.readBool(offsets[12]),
+    volume: reader.readDouble(offsets[13]),
   );
   return object;
 }
@@ -184,15 +194,27 @@ P _alarmModelDeserializeProp<P>(
     case 9:
       return (reader.readString(offset)) as P;
     case 10:
-      return (reader.readString(offset)) as P;
+      return (_AlarmModelringTypeValueEnumMap[reader.readByteOrNull(offset)] ??
+          AlarmRingType.normal) as P;
     case 11:
-      return (reader.readBool(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 12:
+      return (reader.readBool(offset)) as P;
+    case 13:
       return (reader.readDouble(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
+
+const _AlarmModelringTypeEnumValueMap = {
+  'normal': 0,
+  'letters': 1,
+};
+const _AlarmModelringTypeValueEnumMap = {
+  0: AlarmRingType.normal,
+  1: AlarmRingType.letters,
+};
 
 Id _alarmModelGetId(AlarmModel object) {
   return object.id;
@@ -956,6 +978,60 @@ extension AlarmModelQueryFilter
     });
   }
 
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> ringTypeEqualTo(
+      AlarmRingType value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'ringType',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition>
+      ringTypeGreaterThan(
+    AlarmRingType value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'ringType',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> ringTypeLessThan(
+    AlarmRingType value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'ringType',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> ringTypeBetween(
+    AlarmRingType lower,
+    AlarmRingType upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'ringType',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<AlarmModel, AlarmModel, QAfterFilterCondition> titleEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1295,6 +1371,18 @@ extension AlarmModelQuerySortBy
     });
   }
 
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByRingType() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'ringType', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByRingTypeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'ringType', Sort.desc);
+    });
+  }
+
   QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> sortByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -1473,6 +1561,18 @@ extension AlarmModelQuerySortThenBy
     });
   }
 
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByRingType() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'ringType', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByRingTypeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'ringType', Sort.desc);
+    });
+  }
+
   QueryBuilder<AlarmModel, AlarmModel, QAfterSortBy> thenByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -1580,6 +1680,12 @@ extension AlarmModelQueryWhereDistinct
     });
   }
 
+  QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByRingType() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'ringType');
+    });
+  }
+
   QueryBuilder<AlarmModel, AlarmModel, QDistinct> distinctByTitle(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1669,6 +1775,12 @@ extension AlarmModelQueryProperty
       notificationTitleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'notificationTitle');
+    });
+  }
+
+  QueryBuilder<AlarmModel, AlarmRingType, QQueryOperations> ringTypeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'ringType');
     });
   }
 

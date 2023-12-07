@@ -47,6 +47,10 @@ mixin _$AlarmModel {
       throw _privateConstructorUsedError;
   bool get androidFullScreenIntent => throw _privateConstructorUsedError;
   set androidFullScreenIntent(bool value) => throw _privateConstructorUsedError;
+  @enumerated
+  AlarmRingType get ringType => throw _privateConstructorUsedError;
+  @enumerated
+  set ringType(AlarmRingType value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AlarmModelCopyWith<AlarmModel> get copyWith =>
@@ -73,7 +77,8 @@ abstract class $AlarmModelCopyWith<$Res> {
       String notificationTitle,
       String notificationBody,
       bool enableNotificationOnKill,
-      bool androidFullScreenIntent});
+      bool androidFullScreenIntent,
+      @enumerated AlarmRingType ringType});
 }
 
 /// @nodoc
@@ -103,6 +108,7 @@ class _$AlarmModelCopyWithImpl<$Res, $Val extends AlarmModel>
     Object? notificationBody = null,
     Object? enableNotificationOnKill = null,
     Object? androidFullScreenIntent = null,
+    Object? ringType = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -161,6 +167,10 @@ class _$AlarmModelCopyWithImpl<$Res, $Val extends AlarmModel>
           ? _value.androidFullScreenIntent
           : androidFullScreenIntent // ignore: cast_nullable_to_non_nullable
               as bool,
+      ringType: null == ringType
+          ? _value.ringType
+          : ringType // ignore: cast_nullable_to_non_nullable
+              as AlarmRingType,
     ) as $Val);
   }
 }
@@ -187,7 +197,8 @@ abstract class _$$AlarmModelImplCopyWith<$Res>
       String notificationTitle,
       String notificationBody,
       bool enableNotificationOnKill,
-      bool androidFullScreenIntent});
+      bool androidFullScreenIntent,
+      @enumerated AlarmRingType ringType});
 }
 
 /// @nodoc
@@ -215,6 +226,7 @@ class __$$AlarmModelImplCopyWithImpl<$Res>
     Object? notificationBody = null,
     Object? enableNotificationOnKill = null,
     Object? androidFullScreenIntent = null,
+    Object? ringType = null,
   }) {
     return _then(_$AlarmModelImpl(
       id: null == id
@@ -273,6 +285,10 @@ class __$$AlarmModelImplCopyWithImpl<$Res>
           ? _value.androidFullScreenIntent
           : androidFullScreenIntent // ignore: cast_nullable_to_non_nullable
               as bool,
+      ringType: null == ringType
+          ? _value.ringType
+          : ringType // ignore: cast_nullable_to_non_nullable
+              as AlarmRingType,
     ));
   }
 }
@@ -294,7 +310,8 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
       this.notificationTitle = 'Alarm is Playing',
       this.notificationBody = 'Tap to stop',
       this.enableNotificationOnKill = false,
-      this.androidFullScreenIntent = true})
+      this.androidFullScreenIntent = true,
+      @enumerated this.ringType = AlarmRingType.normal})
       : super._();
 
   @override
@@ -338,10 +355,14 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
   @override
   @JsonKey()
   bool androidFullScreenIntent;
+  @override
+  @JsonKey()
+  @enumerated
+  AlarmRingType ringType;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AlarmModel(id: $id, hour: $hour, minute: $minute, title: $title, isEnabled: $isEnabled, volume: $volume, vibrate: $vibrate, loopAudio: $loopAudio, assetAudioPath: $assetAudioPath, fadeDuration: $fadeDuration, notificationTitle: $notificationTitle, notificationBody: $notificationBody, enableNotificationOnKill: $enableNotificationOnKill, androidFullScreenIntent: $androidFullScreenIntent)';
+    return 'AlarmModel(id: $id, hour: $hour, minute: $minute, title: $title, isEnabled: $isEnabled, volume: $volume, vibrate: $vibrate, loopAudio: $loopAudio, assetAudioPath: $assetAudioPath, fadeDuration: $fadeDuration, notificationTitle: $notificationTitle, notificationBody: $notificationBody, enableNotificationOnKill: $enableNotificationOnKill, androidFullScreenIntent: $androidFullScreenIntent, ringType: $ringType)';
   }
 
   @override
@@ -364,7 +385,8 @@ class _$AlarmModelImpl extends _AlarmModel with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty(
           'enableNotificationOnKill', enableNotificationOnKill))
       ..add(DiagnosticsProperty(
-          'androidFullScreenIntent', androidFullScreenIntent));
+          'androidFullScreenIntent', androidFullScreenIntent))
+      ..add(DiagnosticsProperty('ringType', ringType));
   }
 
   @JsonKey(ignore: true)
@@ -389,7 +411,8 @@ abstract class _AlarmModel extends AlarmModel {
       String notificationTitle,
       String notificationBody,
       bool enableNotificationOnKill,
-      bool androidFullScreenIntent}) = _$AlarmModelImpl;
+      bool androidFullScreenIntent,
+      @enumerated AlarmRingType ringType}) = _$AlarmModelImpl;
   _AlarmModel._() : super._();
 
   @override
@@ -434,6 +457,11 @@ abstract class _AlarmModel extends AlarmModel {
   @override
   bool get androidFullScreenIntent;
   set androidFullScreenIntent(bool value);
+  @override
+  @enumerated
+  AlarmRingType get ringType;
+  @enumerated
+  set ringType(AlarmRingType value);
   @override
   @JsonKey(ignore: true)
   _$$AlarmModelImplCopyWith<_$AlarmModelImpl> get copyWith =>
