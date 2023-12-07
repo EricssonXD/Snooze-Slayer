@@ -1,7 +1,3 @@
-import 'dart:async';
-
-import 'package:alarm/alarm.dart';
-import 'package:snooze_slayer/view/alarm_view/alarm_ring_view.dart';
 import 'package:snooze_slayer/view/alarm_view/components/body.dart';
 import 'package:snooze_slayer/view/alarm_view/components/floating_button.dart';
 import 'package:snooze_slayer/view_model/bloc/alarm_bloc/alarm_cubit.dart';
@@ -19,10 +15,8 @@ class _AlarmScreenState extends State<AlarmScreen> {
   void initState() {
     super.initState();
     BlocProvider.of<AlarmCubit>(context).getData();
-    initRingScreen();
   }
 
-  static StreamSubscription<AlarmSettings>? subscription;
   void initRingScreen() async {
     // try {
     //   final newestAlarm = await Alarm.ringStream.stream.last;
@@ -34,27 +28,13 @@ class _AlarmScreenState extends State<AlarmScreen> {
     //   print(e);
     // }
     // Alarm.ringStream.stream.
-    if (!Alarm.ringStream.hasListener) {
-      subscription ??= Alarm.ringStream.stream.listen(
-        (alarmSettings) {
-          navigateToRingScreen(alarmSettings);
-          debugPrint("YOOOOOOringringring");
-        },
-      );
-    }
   }
 
-  Future<void> navigateToRingScreen(AlarmSettings alarmSettings) async {
-    await Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
-      builder: (context) => AlarmRingView(alarmSettings: alarmSettings),
-    ));
-  }
-
-  @override
-  void dispose() {
-    subscription?.cancel();
-    super.dispose();
-  }
+  // Future<void> navigateToRingScreen(AlarmSettings alarmSettings) async {
+  //   await Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+  //     builder: (context) => AlarmRingView(alarmSettings: alarmSettings),
+  //   ));
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -48,7 +48,7 @@ class _AlarmRingViewState extends State<AlarmRingView> {
     }
   }
 
-  void onStopCallback() {
+  void _onStopCallback() {
     if (isInIsar) {
       AlarmManager().insert(alarm);
     } else {
@@ -57,7 +57,20 @@ class _AlarmRingViewState extends State<AlarmRingView> {
   }
 
   Widget _buildRingBody() {
-    if (!isInIsar) {}
+    if (!isInIsar) {
+      switch (alarm.ringType) {
+        case AlarmRingType.letters:
+          return _Letters(
+            callback: _onStopCallback,
+          );
+        default:
+          break;
+      }
+    }
+    return _Normal(
+      alarmSettings: alarm.getAlarmSettings,
+      callback: _onStopCallback,
+    );
   }
 
   @override
@@ -80,10 +93,7 @@ class _AlarmRingViewState extends State<AlarmRingView> {
                 ),
                 // style: Theme.of(context).textTheme.titleLarge,
               ),
-              if (isInIsar && alarm.ringType == AlarmRingType.letters)
-                _Letters(
-                  callback: onStopCallback,
-                )
+              _buildRingBody(),
             ],
           ),
         ),
@@ -93,15 +103,20 @@ class _AlarmRingViewState extends State<AlarmRingView> {
 }
 
 class _Normal extends StatelessWidget {
-  const _Normal({super.key, required this.alarmSettings});
-  AlarmSettings alarmSettings;
+  const _Normal({required this.alarmSettings, required this.callback});
+  final void Function() callback;
+
+  final AlarmSettings alarmSettings;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         NeumorphicButton(
-          onPressed: () => _snooze(const Duration(minutes: 3), alarmSettings),
+          onPressed: () {
+            _snooze(const Duration(minutes: 3), alarmSettings);
+            Navigator.pop(context);
+          },
           child: Text(
             "Snooze",
             style: Theme.of(context).textTheme.titleLarge,
@@ -109,6 +124,7 @@ class _Normal extends StatelessWidget {
         ),
         NeumorphicButton(
           onPressed: () {
+            callback();
             Navigator.pop(context);
           },
           child: Text(
@@ -204,6 +220,7 @@ class __LettersState extends State<_Letters> {
               NeumorphicButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    widget.callback();
                     Navigator.pop(context);
                   }
                 },
@@ -232,7 +249,7 @@ void _snooze(Duration duration, AlarmSettings alarmSettings) {
         now.minute,
         0,
         0,
-      ).add(const Duration(minutes: 1)),
+      ).add(duration),
     ),
   );
 }
