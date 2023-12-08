@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
-import 'package:snooze_slayer/view/alarm_view/alarm_ring_view.dart';
+import 'package:snooze_slayer/view/ring_view/alarm_ring_view.dart';
 
 class RingManager {
   factory RingManager() => _instance;

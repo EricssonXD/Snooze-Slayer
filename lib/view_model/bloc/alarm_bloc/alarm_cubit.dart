@@ -8,13 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../model/alarm_model.dart';
 
 class AlarmCubit extends Cubit<AlarmStates> {
-  AlarmCubit() : super(NoData()) {
-    initStream();
-  }
-
-  void initStream() async {
-    // alarmModelStream =
-  }
+  AlarmCubit() : super(NoData());
 
   Future<Stream<void>> get alarmModelStream async =>
       (await helper.isar).alarmModels.watchLazy();
