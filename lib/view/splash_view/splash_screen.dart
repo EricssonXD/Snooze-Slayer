@@ -30,7 +30,6 @@ class SplashScreen extends StatelessWidget {
         state.whenOrNull(
           idleState: () {
             goToNextScreen(context);
-            print("This");
           },
         );
       },
