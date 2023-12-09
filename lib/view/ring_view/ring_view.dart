@@ -44,7 +44,6 @@ class _AlarmRingViewState extends State<AlarmRingView> {
       vibrate: widget.alarmSettings.vibrate,
       volume: widget.alarmSettings.volume ?? 1,
       isEnabled: false,
-      title: "Alarm",
     );
     final result = await AlarmManager().getAlarm(widget.alarmSettings.id);
     if (result != null) {
@@ -65,20 +64,17 @@ class _AlarmRingViewState extends State<AlarmRingView> {
   }
 
   Widget _buildRingBody() {
-    if (!isInIsar) {
-      switch (alarm.ringType) {
-        case AlarmRingType.letters:
-          return _Letters(
-            callback: _onStopCallback,
-          );
-        default:
-          break;
-      }
+    switch (alarm.ringType) {
+      case AlarmRingType.letters:
+        return _Letters(
+          callback: _onStopCallback,
+        );
+      default:
+        return _Normal(
+          alarmSettings: alarm.getAlarmSettings,
+          callback: _onStopCallback,
+        );
     }
-    return _Normal(
-      alarmSettings: alarm.getAlarmSettings,
-      callback: _onStopCallback,
-    );
   }
 
   @override
@@ -91,7 +87,7 @@ class _AlarmRingViewState extends State<AlarmRingView> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               NeumorphicText(
-                alarm.notificationTitle,
+                alarm.title.isNotEmpty ? alarm.title : alarm.notificationTitle,
                 style: const NeumorphicStyle(
                   color: Colors.black,
                 ),

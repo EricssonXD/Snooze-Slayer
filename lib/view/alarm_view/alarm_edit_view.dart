@@ -23,6 +23,7 @@ class _AlarmEditViewState extends State<AlarmEditView> {
     alarm = widget.alarm?.copyWith() ??
         AlarmModel(hour: DateTime.now().hour, minute: DateTime.now().minute);
     _ringType = alarm.ringType;
+    _titleTextController.text = alarm.title;
   }
 
   late final AlarmModel alarm;

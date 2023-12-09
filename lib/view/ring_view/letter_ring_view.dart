@@ -35,6 +35,7 @@ class __LettersState extends State<_Letters> {
       key: _formKey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           NeumorphicText(
             targetString,
@@ -48,7 +49,7 @@ class __LettersState extends State<_Letters> {
           ),
           Neumorphic(
             style: const NeumorphicStyle(depth: -5),
-            margin: const EdgeInsets.all(8),
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
               validator: (value) {
@@ -66,6 +67,7 @@ class __LettersState extends State<_Letters> {
               controller: _answerController,
             ),
           ),
+          const SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
