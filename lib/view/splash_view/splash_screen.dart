@@ -66,9 +66,6 @@ class SplashScreen extends StatelessWidget {
   }
 
   void goToNextScreen(BuildContext context) {
-    print("GO to alarm");
-    FlutterNativeSplash.remove();
-
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -76,8 +73,8 @@ class SplashScreen extends StatelessWidget {
             create: (context) => HomeBloc(),
             child: const HomeScreen(),
           ),
-        )).then((value) {
-      askPermissions();
-    });
+        ));
+    askPermissions();
+    FlutterNativeSplash.remove();
   }
 }

@@ -20,10 +20,10 @@ class RingingBlocListener extends StatelessWidget {
               // debugPrint("Initial State");
             },
             ringing: (alarmSettings) {
-              FlutterNativeSplash.remove();
-
               BlocProvider.of<RingingCubit>(context).showRingingScreen(
                   globalNavigationKey.currentContext!, alarmSettings);
+              Future.delayed(const Duration(milliseconds: 300))
+                  .then((value) => FlutterNativeSplash.remove());
             },
             idleState: () {
               // debugPrint("Stopped Ringing");
