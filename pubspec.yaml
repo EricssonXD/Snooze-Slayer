@@ -25,6 +25,7 @@ dependencies:
   isar_flutter_libs: ^3.1.0+1
   freezed_annotation: ^2.4.1
   permission_handler: ^11.0.1
+  flutter_native_splash: ^2.3.7
 
 dependency_overrides:
   alarm:
@@ -40,7 +41,6 @@ dev_dependencies:
   build_runner: ^2.4.7
   freezed: ^2.4.5
   flutter_launcher_icons: ^0.13.1
-  flutter_native_splash: ^2.3.7
 
 
 flutter:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:snooze_slayer/main.dart';
 import 'package:snooze_slayer/view_model/bloc/ringing_bloc/ringing_cubit.dart';
 
@@ -19,6 +20,8 @@ class RingingBlocListener extends StatelessWidget {
               // debugPrint("Initial State");
             },
             ringing: (alarmSettings) {
+              FlutterNativeSplash.remove();
+
               BlocProvider.of<RingingCubit>(context).showRingingScreen(
                   globalNavigationKey.currentContext!, alarmSettings);
             },

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:snooze_slayer/res/theme.dart';
 import 'package:snooze_slayer/view/common_widget/soft_button.dart';
 import 'package:snooze_slayer/view/home_view/home_view.dart';
@@ -12,7 +13,7 @@ import 'package:snooze_slayer/view_model/bloc/ringing_bloc/ringing_cubit.dart';
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
-  static const delay = Duration(milliseconds: 3000);
+  static const delay = Duration(milliseconds: 0);
 
   void askPermissions() async {
     switch (await Permission.notification.status) {
@@ -34,25 +35,30 @@ class SplashScreen extends StatelessWidget {
         );
       },
       builder: (context, state) {
-        Future.delayed(delay, () {
-          if (context.mounted) {
-            BlocProvider.of<RingingCubit>(context).state.whenOrNull(
-                  idleState: () => goToNextScreen(context),
-                );
-          }
-        });
+        Future.delayed(
+          delay,
+          () {
+            if (context.mounted) {
+              BlocProvider.of<RingingCubit>(context).state.whenOrNull(
+                    idleState: () => goToNextScreen(context),
+                  );
+            }
+          },
+        );
         return Scaffold(
           body: Center(
             child: CircularSoftButton(
-                radius: 60,
-                icon: Center(
-                    child: SvgPicture.asset(
+              radius: 70,
+              icon: Center(
+                child: SvgPicture.asset(
                   'assets/icons/clock.svg',
                   height: 35,
                   width: 35,
                   colorFilter: const ColorFilter.mode(
                       MyTheme.highlightColor, BlendMode.srcIn),
-                ))),
+                ),
+              ),
+            ),
           ),
         );
       },
@@ -61,6 +67,8 @@ class SplashScreen extends StatelessWidget {
 
   void goToNextScreen(BuildContext context) {
     print("GO to alarm");
+    FlutterNativeSplash.remove();
+
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
