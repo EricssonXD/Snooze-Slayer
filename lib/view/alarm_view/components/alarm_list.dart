@@ -86,7 +86,7 @@ class _AlarmListState extends State<AlarmList> {
                       Column(
                         children: [
                           Text(
-                            'Alarm 1',
+                            alarm.title,
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineSmall!

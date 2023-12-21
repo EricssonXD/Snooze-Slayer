@@ -11,15 +11,17 @@ abstract class MyTheme {
 
   static final ThemeData lightTheme = ThemeData(
     timePickerTheme: TimePickerThemeData(
-        backgroundColor: Colors.white,
-        hourMinuteColor: Colors.transparent,
-        entryModeIconColor: highlightColor,
-        dialHandColor: highlightColor,
-        dialBackgroundColor: Colors.transparent,
-        dayPeriodShape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-          side: BorderSide.none,
-        )),
+      // dayPeriodColor: highlightColor,
+      backgroundColor: Colors.white,
+      hourMinuteColor: Colors.transparent,
+      entryModeIconColor: highlightColor,
+      dialHandColor: highlightColor,
+      dialBackgroundColor: Colors.transparent,
+      dayPeriodShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: BorderSide.none,
+      ),
+    ),
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.light,
       seedColor: highlightColor,

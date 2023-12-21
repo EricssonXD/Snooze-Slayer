@@ -6,5 +6,5 @@ class RingingState with _$RingingState {
 
   const factory RingingState.ringing(AlarmSettings alarmSettings) = _Ringing;
 
-  const factory RingingState.stoppedRinging() = _StoppedRinging;
+  const factory RingingState.idleState() = _StoppedRinging;
 }

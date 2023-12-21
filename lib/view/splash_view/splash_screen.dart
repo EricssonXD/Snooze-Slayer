@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:snooze_slayer/res/theme.dart';
 import 'package:snooze_slayer/view/common_widget/soft_button.dart';
 import 'package:snooze_slayer/view/home_view/home_view.dart';
@@ -7,31 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:snooze_slayer/view_model/bloc/ringing_bloc/ringing_cubit.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(milliseconds: 300), () {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BlocProvider(
-              create: (context) => HomeBloc(),
-              child: const HomeScreen(),
-            ),
-          )).then((value) {
-        askPermissions();
-      });
-    });
-  }
+  static const delay = Duration(milliseconds: 0);
 
   void askPermissions() async {
     switch (await Permission.notification.status) {
@@ -44,19 +26,55 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: CircularSoftButton(
-            radius: 60,
-            icon: Center(
+    return BlocConsumer<RingingCubit, RingingState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          idleState: () {
+            goToNextScreen(context);
+          },
+        );
+      },
+      builder: (context, state) {
+        Future.delayed(
+          delay,
+          () {
+            if (context.mounted) {
+              BlocProvider.of<RingingCubit>(context).state.whenOrNull(
+                    idleState: () => goToNextScreen(context),
+                  );
+            }
+          },
+        );
+        return Scaffold(
+          body: Center(
+            child: CircularSoftButton(
+              radius: 70,
+              icon: Center(
                 child: SvgPicture.asset(
-              'assets/icons/clock.svg',
-              height: 35,
-              width: 35,
-              colorFilter: const ColorFilter.mode(
-                  MyTheme.highlightColor, BlendMode.srcIn),
-            ))),
-      ),
+                  'assets/icons/clock.svg',
+                  height: 35,
+                  width: 35,
+                  colorFilter: const ColorFilter.mode(
+                      MyTheme.highlightColor, BlendMode.srcIn),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
+  }
+
+  void goToNextScreen(BuildContext context) {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => HomeBloc(),
+            child: const HomeScreen(),
+          ),
+        ));
+    askPermissions();
+    FlutterNativeSplash.remove();
   }
 }

@@ -20,21 +20,21 @@ mixin _$RingingState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(AlarmSettings alarmSettings) ringing,
-    required TResult Function() stoppedRinging,
+    required TResult Function() idleState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(AlarmSettings alarmSettings)? ringing,
-    TResult? Function()? stoppedRinging,
+    TResult? Function()? idleState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(AlarmSettings alarmSettings)? ringing,
-    TResult Function()? stoppedRinging,
+    TResult Function()? idleState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,21 +42,21 @@ mixin _$RingingState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Ringing value) ringing,
-    required TResult Function(_StoppedRinging value) stoppedRinging,
+    required TResult Function(_StoppedRinging value) idleState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Ringing value)? ringing,
-    TResult? Function(_StoppedRinging value)? stoppedRinging,
+    TResult? Function(_StoppedRinging value)? idleState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Ringing value)? ringing,
-    TResult Function(_StoppedRinging value)? stoppedRinging,
+    TResult Function(_StoppedRinging value)? idleState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +126,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(AlarmSettings alarmSettings) ringing,
-    required TResult Function() stoppedRinging,
+    required TResult Function() idleState,
   }) {
     return initial();
   }
@@ -136,7 +136,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(AlarmSettings alarmSettings)? ringing,
-    TResult? Function()? stoppedRinging,
+    TResult? Function()? idleState,
   }) {
     return initial?.call();
   }
@@ -146,7 +146,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(AlarmSettings alarmSettings)? ringing,
-    TResult Function()? stoppedRinging,
+    TResult Function()? idleState,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -160,7 +160,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Ringing value) ringing,
-    required TResult Function(_StoppedRinging value) stoppedRinging,
+    required TResult Function(_StoppedRinging value) idleState,
   }) {
     return initial(this);
   }
@@ -170,7 +170,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Ringing value)? ringing,
-    TResult? Function(_StoppedRinging value)? stoppedRinging,
+    TResult? Function(_StoppedRinging value)? idleState,
   }) {
     return initial?.call(this);
   }
@@ -180,7 +180,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Ringing value)? ringing,
-    TResult Function(_StoppedRinging value)? stoppedRinging,
+    TResult Function(_StoppedRinging value)? idleState,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -269,7 +269,7 @@ class _$RingingImpl with DiagnosticableTreeMixin implements _Ringing {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(AlarmSettings alarmSettings) ringing,
-    required TResult Function() stoppedRinging,
+    required TResult Function() idleState,
   }) {
     return ringing(alarmSettings);
   }
@@ -279,7 +279,7 @@ class _$RingingImpl with DiagnosticableTreeMixin implements _Ringing {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(AlarmSettings alarmSettings)? ringing,
-    TResult? Function()? stoppedRinging,
+    TResult? Function()? idleState,
   }) {
     return ringing?.call(alarmSettings);
   }
@@ -289,7 +289,7 @@ class _$RingingImpl with DiagnosticableTreeMixin implements _Ringing {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(AlarmSettings alarmSettings)? ringing,
-    TResult Function()? stoppedRinging,
+    TResult Function()? idleState,
     required TResult orElse(),
   }) {
     if (ringing != null) {
@@ -303,7 +303,7 @@ class _$RingingImpl with DiagnosticableTreeMixin implements _Ringing {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Ringing value) ringing,
-    required TResult Function(_StoppedRinging value) stoppedRinging,
+    required TResult Function(_StoppedRinging value) idleState,
   }) {
     return ringing(this);
   }
@@ -313,7 +313,7 @@ class _$RingingImpl with DiagnosticableTreeMixin implements _Ringing {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Ringing value)? ringing,
-    TResult? Function(_StoppedRinging value)? stoppedRinging,
+    TResult? Function(_StoppedRinging value)? idleState,
   }) {
     return ringing?.call(this);
   }
@@ -323,7 +323,7 @@ class _$RingingImpl with DiagnosticableTreeMixin implements _Ringing {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Ringing value)? ringing,
-    TResult Function(_StoppedRinging value)? stoppedRinging,
+    TResult Function(_StoppedRinging value)? idleState,
     required TResult orElse(),
   }) {
     if (ringing != null) {
@@ -367,13 +367,13 @@ class _$StoppedRingingImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RingingState.stoppedRinging()';
+    return 'RingingState.idleState()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'RingingState.stoppedRinging'));
+    properties.add(DiagnosticsProperty('type', 'RingingState.idleState'));
   }
 
   @override
@@ -390,9 +390,9 @@ class _$StoppedRingingImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(AlarmSettings alarmSettings) ringing,
-    required TResult Function() stoppedRinging,
+    required TResult Function() idleState,
   }) {
-    return stoppedRinging();
+    return idleState();
   }
 
   @override
@@ -400,9 +400,9 @@ class _$StoppedRingingImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(AlarmSettings alarmSettings)? ringing,
-    TResult? Function()? stoppedRinging,
+    TResult? Function()? idleState,
   }) {
-    return stoppedRinging?.call();
+    return idleState?.call();
   }
 
   @override
@@ -410,11 +410,11 @@ class _$StoppedRingingImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(AlarmSettings alarmSettings)? ringing,
-    TResult Function()? stoppedRinging,
+    TResult Function()? idleState,
     required TResult orElse(),
   }) {
-    if (stoppedRinging != null) {
-      return stoppedRinging();
+    if (idleState != null) {
+      return idleState();
     }
     return orElse();
   }
@@ -424,9 +424,9 @@ class _$StoppedRingingImpl
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Ringing value) ringing,
-    required TResult Function(_StoppedRinging value) stoppedRinging,
+    required TResult Function(_StoppedRinging value) idleState,
   }) {
-    return stoppedRinging(this);
+    return idleState(this);
   }
 
   @override
@@ -434,9 +434,9 @@ class _$StoppedRingingImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Ringing value)? ringing,
-    TResult? Function(_StoppedRinging value)? stoppedRinging,
+    TResult? Function(_StoppedRinging value)? idleState,
   }) {
-    return stoppedRinging?.call(this);
+    return idleState?.call(this);
   }
 
   @override
@@ -444,11 +444,11 @@ class _$StoppedRingingImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Ringing value)? ringing,
-    TResult Function(_StoppedRinging value)? stoppedRinging,
+    TResult Function(_StoppedRinging value)? idleState,
     required TResult orElse(),
   }) {
-    if (stoppedRinging != null) {
-      return stoppedRinging(this);
+    if (idleState != null) {
+      return idleState(this);
     }
     return orElse();
   }
