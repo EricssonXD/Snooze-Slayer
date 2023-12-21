@@ -1,5 +1,5 @@
 name: snooze_slayer
-description: A new Flutter project.
+description: Super Alarm App
 
 publish_to: 'none' 
 
@@ -28,8 +28,8 @@ dependencies:
   flutter_native_splash: ^2.3.7
 
 dependency_overrides:
-  alarm:
-    path: package_overrides/alarm-3.0.0-dev.4/
+  # alarm:
+  #   path: package_overrides/alarm-3.0.0-dev.4/
   flutter_neumorphic:
     path: package_overrides/flutter_neumorphic-3.2.0/
 
